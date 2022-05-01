@@ -1,15 +1,12 @@
 import React from 'react';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {View} from './common';
-import Counter from './count/components/Counter';
+import Intro from './intro/RootIntro';
 
 const Root = () => {
-  const insets = useSafeAreaInsets();
-
   // RENDER
   return (
-    <View style={{flex: 1, top: insets.top}}>
-      <Counter />
+    <View style={{flex: 1}}>
+      <Intro />
     </View>
   );
 };
