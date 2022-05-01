@@ -55,6 +55,7 @@ CustomText.defaultProps = {
   marginVertical: 0,
   marginHorizontal: 0,
   numberOfLines: null,
+  fontFamily: 'Rubik-Light',
 };
 
 /* Export
