@@ -1,7 +1,9 @@
-import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import Intro from '../intro/RootIntro';
+import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+// COMPONENTS
+import Intro from '../intro/RootIntro';
 import Rules from '../intro/Rules';
 import Home from '../home/components';
 
