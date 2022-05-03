@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Pressable, View} from '../common';
@@ -7,6 +8,7 @@ import Header from './Header';
 
 const Intro = () => {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
 
   // STYLES
   const _btnStyle = {
@@ -21,14 +23,16 @@ const Intro = () => {
 
       <Pressable
         title="View Rules"
-        onPress={() => console.log('Navigate_to_screen')}
+        onPress={() => navigation.navigate('Rules')}
         containerStyles={[_btnStyle, {left: 30}]}
+        button
       />
 
       <Pressable
-        onPress={() => console.log('Navigate_to_screen')}
+        onPress={() => navigation.navigate('Home')}
         containerStyles={[_btnStyle, {right: 30}]}
         title="Enter"
+        button
       />
     </View>
   );

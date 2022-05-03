@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 
-import CountReducer from '../count/redux/reducer';
+import CountReducer from '../home/redux/reducer';
 
 /* ============================================================================
   Combine ALl Reducers
