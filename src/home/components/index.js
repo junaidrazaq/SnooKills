@@ -6,11 +6,14 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {connect} from 'react-redux';
 import {getCount} from '../redux/selectors';
 import {addCount, minusCount} from '../redux/actions';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-const Counter = ({count, addCount, minusCount}) => {
+const Home = ({count, addCount, minusCount}) => {
+  const insets = useSafeAreaInsets();
+
   // RENDER
   return (
-    <View center>
+    <View style={{top: insets.top + 10}} center>
       <Text>{count}</Text>
       <Pressable onPress={() => addCount()}>
         <Text>Increase</Text>
@@ -31,4 +34,4 @@ const mapDispatchToProps = {
   minusCount: minusCount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
