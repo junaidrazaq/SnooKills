@@ -1,12 +1,12 @@
 import React from 'react';
 import {View} from './common';
-import Intro from './intro/RootIntro';
+import AppNavigation from './navigation';
 
 const Root = () => {
   // RENDER
   return (
     <View style={{flex: 1}}>
-      <Intro />
+      <AppNavigation />
     </View>
   );
 };
