@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import {Pressable} from 'react-native';
 import {Text} from '.';
 import {shadowLight} from '../_Shadow';
 
@@ -9,41 +9,43 @@ const CustomPressable = ({
   bgColor,
   textColor,
   onPress,
+  children,
+  button,
   ...props
 }) => {
-  const _style = {
-    bgColor,
+  const buttonStyles = {
+    paddingHorizontal: 25,
+    paddingVertical: 10,
+    borderRadius: 5,
+    backgroundColor: '#000',
+    ...shadowLight,
   };
+
   //   RENDER
   return (
     <Pressable
       onPress={onPress}
       style={({pressed}) => [
-        styles.container,
+        button ? buttonStyles : null,
         containerStyles,
-        {opacity: pressed ? 0.2 : 1, backgroundColor: bgColor},
+        {opacity: pressed ? 0.2 : 1},
+        bgColor ? {backgroundColor: bgColor} : null,
       ]}
       {...props}>
-      <Text fontFamily="Rubik-Medium" color={textColor ? textColor : '#fff'}>
-        {title}
-      </Text>
+      {title && (
+        <Text fontFamily="Rubik-Medium" color={textColor ? textColor : '#fff'}>
+          {title}
+        </Text>
+      )}
+      {children}
     </Pressable>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 25,
-    paddingVertical: 10,
-    borderRadius: 5,
-    ...shadowLight,
-  },
-});
-
 /* Default Props
 ============================================================================= */
 CustomPressable.defaultProps = {
-  bgColor: '#929',
+  bgColor: null,
 };
 
 /* Export
