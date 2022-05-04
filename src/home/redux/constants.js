@@ -1,5 +1,5 @@
 import {actionGenerator} from '../../util/reduxHelpers';
 
-export const ADD_COUNT = actionGenerator('COUNT/ADD_COUNT');
+export const ADD_LIVES = actionGenerator('LIVES/ADD_LIVES');
 
-export const MINUS_COUNT = actionGenerator('COUNT/MINUS_COUNT');
+export const MINUS_LIVES = actionGenerator('LIVES/MINUS_LIVES');
