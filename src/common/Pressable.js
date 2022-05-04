@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Pressable, Animated} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {Text} from '.';
 import {shadowLight} from '../_Shadow';
 
@@ -13,6 +13,7 @@ const CustomPressable = ({
   button,
   ...props
 }) => {
+  // console.log('pressableRendered');
   const buttonStyles = {
     paddingHorizontal: 25,
     paddingVertical: 10,
@@ -20,45 +21,24 @@ const CustomPressable = ({
     backgroundColor: '#000',
     ...shadowLight,
   };
-  const animated = new Animated.Value(1);
-
-  const fadeIn = () => {
-    Animated.timing(animated, {
-      toValue: 0.1,
-      duration: 100,
-      useNativeDriver: true,
-    }).start();
-  };
-  const fadeOut = () => {
-    Animated.timing(animated, {
-      toValue: 1,
-      duration: 200,
-      useNativeDriver: true,
-    }).start();
-  };
 
   //   RENDER
   return (
-    <Animated.View style={[{opacity: animated}, containerStyles]}>
-      <Pressable
-        onPressIn={fadeIn}
-        onPressOut={fadeOut}
-        onPress={onPress}
-        style={[
-          button ? buttonStyles : null,
-          bgColor ? {backgroundColor: bgColor} : null,
-        ]}
-        {...props}>
-        {title && (
-          <Text
-            fontFamily="Rubik-Medium"
-            color={textColor ? textColor : '#fff'}>
-            {title}
-          </Text>
-        )}
-        {children}
-      </Pressable>
-    </Animated.View>
+    <TouchableOpacity
+      {...props}
+      onPress={onPress}
+      style={[
+        button ? buttonStyles : null,
+        bgColor ? {backgroundColor: bgColor} : null,
+        containerStyles,
+      ]}>
+      {title && (
+        <Text fontFamily="Rubik-Medium" color={textColor ? textColor : '#fff'}>
+          {title}
+        </Text>
+      )}
+      {children}
+    </TouchableOpacity>
   );
 };
 
