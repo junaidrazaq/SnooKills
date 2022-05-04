@@ -5,10 +5,6 @@ import Player from './Players';
 
 // REDUX
 import {
-  addLife as addLifeAction,
-  minusLife as minusLifeAction,
-} from '../redux/actions';
-import {
   getBlackLives,
   getBlueLives,
   getBrownLives,
@@ -27,8 +23,6 @@ const AllPlayers = ({
   blueLives,
   pinkLives,
   blackLives,
-  addLife,
-  minusLife,
 }) => {
   const playerSize = 60;
   const topPosition = 20;
@@ -45,8 +39,7 @@ const AllPlayers = ({
         top={topPosition}
         left={20}
         lives={yellowLives}
-        onAdd={() => addLife('yellow')}
-        onMinus={() => minusLife('yellow')}
+        ballColor="yellow"
       />
 
       <Player // GREEN
@@ -56,8 +49,7 @@ const AllPlayers = ({
         top={topPosition}
         right={20}
         lives={greenLives}
-        onAdd={() => addLife('green')}
-        onMinus={() => minusLife('green')}
+        ballColor="green"
       />
 
       <Player // BROWN
@@ -67,8 +59,7 @@ const AllPlayers = ({
         top={middlePosition}
         left={20}
         lives={brownLives}
-        onAdd={() => addLife('brown')}
-        onMinus={() => minusLife('brown')}
+        ballColor="brown"
       />
 
       <Player // BLUE
@@ -78,8 +69,7 @@ const AllPlayers = ({
         top={middlePosition}
         right={20}
         lives={blueLives}
-        onAdd={() => addLife('blue')}
-        onMinus={() => minusLife('blue')}
+        ballColor="blue"
       />
 
       <Player // PINK
@@ -89,8 +79,7 @@ const AllPlayers = ({
         top={bottomPosition}
         left={20}
         lives={pinkLives}
-        onAdd={() => addLife('pink')}
-        onMinus={() => minusLife('pink')}
+        ballColor="pink"
       />
 
       <Player // BLACK
@@ -100,8 +89,7 @@ const AllPlayers = ({
         top={bottomPosition}
         right={20}
         lives={blackLives}
-        onAdd={() => addLife('black')}
-        onMinus={() => minusLife('black')}
+        ballColor="black"
       />
     </View>
   );
@@ -119,7 +107,4 @@ const mapStateToProps = state => {
   };
 };
 
-// actions
-const mapDispatchToProps = {addLife: addLifeAction, minusLife: minusLifeAction};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AllPlayers);
+export default connect(mapStateToProps, null)(AllPlayers);
