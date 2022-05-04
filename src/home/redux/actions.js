@@ -20,3 +20,10 @@ export const toggleKills = color => async dispatch => {
     payload: color,
   });
 };
+
+export const resetState = () => async dispatch => {
+  dispatch({
+    type: constants.RESET_STATE.SUCCESS,
+  });
+  alert('Game Reset!');
+};

@@ -61,6 +61,23 @@ export default function reducer(state = INITIAL_STATE, action) {
         blackKills: payload === 'black' ? !state.blackKills : state.blackKills,
       };
 
+    case constants.RESET_STATE.SUCCESS:
+      return {
+        ...state,
+        yellowLives: 3,
+        greenLives: 3,
+        brownLives: 3,
+        blueLives: 3,
+        pinkLives: 3,
+        blackLives: 3,
+        yellowKills: false,
+        greenKills: false,
+        brownKills: false,
+        blueKills: false,
+        pinkKills: false,
+        blackKills: false,
+      };
+
     default:
       return state;
   }

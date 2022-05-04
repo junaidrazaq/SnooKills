@@ -5,3 +5,5 @@ export const ADD_LIVES = actionGenerator('LIVES/ADD_LIVES');
 export const MINUS_LIVES = actionGenerator('LIVES/MINUS_LIVES');
 
 export const TOGGLE_KILLS = actionGenerator('LIVES/TOGGLE_KILLS');
+
+export const RESET_STATE = actionGenerator('LIVES/RESET_STATE');
