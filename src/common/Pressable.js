@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Pressable} from 'react-native';
+import {Pressable, Animated} from 'react-native';
 import {Text} from '.';
 import {shadowLight} from '../_Shadow';
 
@@ -20,25 +20,45 @@ const CustomPressable = ({
     backgroundColor: '#000',
     ...shadowLight,
   };
+  const animated = new Animated.Value(1);
+
+  const fadeIn = () => {
+    Animated.timing(animated, {
+      toValue: 0.1,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+  };
+  const fadeOut = () => {
+    Animated.timing(animated, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  };
 
   //   RENDER
   return (
-    <Pressable
-      onPress={onPress}
-      style={({pressed}) => [
-        button ? buttonStyles : null,
-        containerStyles,
-        {opacity: pressed ? 0.2 : 1},
-        bgColor ? {backgroundColor: bgColor} : null,
-      ]}
-      {...props}>
-      {title && (
-        <Text fontFamily="Rubik-Medium" color={textColor ? textColor : '#fff'}>
-          {title}
-        </Text>
-      )}
-      {children}
-    </Pressable>
+    <Animated.View style={[{opacity: animated}, containerStyles]}>
+      <Pressable
+        onPressIn={fadeIn}
+        onPressOut={fadeOut}
+        onPress={onPress}
+        style={[
+          button ? buttonStyles : null,
+          bgColor ? {backgroundColor: bgColor} : null,
+        ]}
+        {...props}>
+        {title && (
+          <Text
+            fontFamily="Rubik-Medium"
+            color={textColor ? textColor : '#fff'}>
+            {title}
+          </Text>
+        )}
+        {children}
+      </Pressable>
+    </Animated.View>
   );
 };
 
@@ -50,4 +70,4 @@ CustomPressable.defaultProps = {
 
 /* Export
 ============================================================================= */
-export default CustomPressable;
+export default React.memo(CustomPressable);
