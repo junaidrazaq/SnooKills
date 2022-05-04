@@ -13,3 +13,10 @@ export const minusLife = color => async dispatch => {
     payload: color,
   });
 };
+
+export const toggleKills = color => async dispatch => {
+  dispatch({
+    type: constants.TOGGLE_KILLS.SUCCESS,
+    payload: color,
+  });
+};

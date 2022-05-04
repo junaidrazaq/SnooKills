@@ -2,11 +2,15 @@ import React from 'react';
 import {Pressable} from '../../../common';
 import {StyleSheet} from 'react-native';
 
-const KillsBtn = ({ballColor}) => {
+// REDUX
+import {connect} from 'react-redux';
+import {toggleKills as toggleKillsAction} from '../../redux/actions';
+
+const KillsBtn = ({ballColor, toggleKills}) => {
   // RENDER
   return (
     <Pressable
-      onPress={() => console.log('test')}
+      onPress={() => toggleKills(ballColor)}
       containerStyles={styles.kills}
     />
   );
@@ -25,4 +29,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KillsBtn;
+// ACTIONS
+const mapDispatchToProps = {toggleKills: toggleKillsAction};
+
+export default connect(null, mapDispatchToProps)(KillsBtn);
+
+// export default KillsBtn;

@@ -7,6 +7,12 @@ export const INITIAL_STATE = {
   blueLives: 3,
   pinkLives: 3,
   blackLives: 3,
+  yellowKills: false,
+  greenKills: false,
+  brownKills: false,
+  blueKills: false,
+  pinkKills: false,
+  blackKills: false,
 };
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -15,6 +21,7 @@ export default function reducer(state = INITIAL_STATE, action) {
   switch (type) {
     case constants.ADD_LIVES.SUCCESS:
       return {
+        ...state,
         yellowLives:
           payload === 'yellow' ? state.yellowLives + 1 : state.yellowLives,
         greenLives:
@@ -29,6 +36,7 @@ export default function reducer(state = INITIAL_STATE, action) {
 
     case constants.MINUS_LIVES.SUCCESS:
       return {
+        ...state,
         yellowLives:
           payload === 'yellow' ? state.yellowLives - 1 : state.yellowLives,
         greenLives:
@@ -39,6 +47,18 @@ export default function reducer(state = INITIAL_STATE, action) {
         pinkLives: payload === 'pink' ? state.pinkLives - 1 : state.pinkLives,
         blackLives:
           payload === 'black' ? state.blackLives - 1 : state.blackLives,
+      };
+
+    case constants.TOGGLE_KILLS.SUCCESS:
+      return {
+        ...state,
+        yellowKills:
+          payload === 'yellow' ? !state.yellowKills : state.yellowKills,
+        greenKills: payload === 'green' ? !state.greenKills : state.greenKills,
+        brownKills: payload === 'brown' ? !state.brownKills : state.brownKills,
+        blueKills: payload === 'blue' ? !state.blueKills : state.blueKills,
+        pinkKills: payload === 'pink' ? !state.pinkKills : state.pinkKills,
+        blackKills: payload === 'black' ? !state.blackKills : state.blackKills,
       };
 
     default:

@@ -5,11 +5,17 @@ import Player from './Players';
 
 // REDUX
 import {
+  getBlackKills,
   getBlackLives,
+  getBlueKills,
   getBlueLives,
+  getBrownKills,
   getBrownLives,
+  getGreenKills,
   getGreenLives,
+  getPinkKills,
   getPinkLives,
+  getYellowKills,
   getYelowLives,
 } from '../redux/selectors';
 
@@ -23,6 +29,12 @@ const AllPlayers = ({
   blueLives,
   pinkLives,
   blackLives,
+  yellowKills,
+  greenKills,
+  brownKills,
+  blueKills,
+  pinkKills,
+  blackKills,
 }) => {
   const playerSize = 60;
   const topPosition = 20;
@@ -40,6 +52,7 @@ const AllPlayers = ({
         left={20}
         lives={yellowLives}
         ballColor="yellow"
+        kills={yellowKills}
       />
 
       <Player // GREEN
@@ -50,6 +63,7 @@ const AllPlayers = ({
         right={20}
         lives={greenLives}
         ballColor="green"
+        kills={greenKills}
       />
 
       <Player // BROWN
@@ -60,6 +74,7 @@ const AllPlayers = ({
         left={20}
         lives={brownLives}
         ballColor="brown"
+        kills={brownKills}
       />
 
       <Player // BLUE
@@ -70,6 +85,7 @@ const AllPlayers = ({
         right={20}
         lives={blueLives}
         ballColor="blue"
+        kills={blueKills}
       />
 
       <Player // PINK
@@ -80,6 +96,7 @@ const AllPlayers = ({
         left={20}
         lives={pinkLives}
         ballColor="pink"
+        kills={pinkKills}
       />
 
       <Player // BLACK
@@ -90,6 +107,7 @@ const AllPlayers = ({
         right={20}
         lives={blackLives}
         ballColor="black"
+        kills={blackKills}
       />
     </View>
   );
@@ -104,6 +122,12 @@ const mapStateToProps = state => {
     blueLives: getBlueLives(state),
     pinkLives: getPinkLives(state),
     blackLives: getBlackLives(state),
+    yellowKills: getYellowKills(state),
+    greenKills: getGreenKills(state),
+    brownKills: getBrownKills(state),
+    blueKills: getBlueKills(state),
+    pinkKills: getPinkKills(state),
+    blackKills: getBlackKills(state),
   };
 };
 
