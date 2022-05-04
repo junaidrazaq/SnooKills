@@ -1,37 +1,19 @@
 import React from 'react';
-import {Text, View} from '../../common';
-import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
-
-// REDUX
-import {connect} from 'react-redux';
-import {getCount} from '../redux/selectors';
-import {addCount, minusCount} from '../redux/actions';
+import {HeaderWithBack, View} from '../../common';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import AllPlayers from './AllPlayers';
 
-const Home = ({count, addCount, minusCount}) => {
+const Home = () => {
   const insets = useSafeAreaInsets();
+  const containerStyle = {flex: 1, top: insets.top + 20};
 
   // RENDER
   return (
-    <View style={{top: insets.top + 10}} center>
-      <Text>{count}</Text>
-      <Pressable onPress={() => addCount()}>
-        <Text>Increase</Text>
-      </Pressable>
-      <Pressable onPress={() => minusCount()}>
-        <Text>Decrease</Text>
-      </Pressable>
+    <View style={containerStyle}>
+      <HeaderWithBack text="Home" />
+      <AllPlayers />
     </View>
   );
 };
 
-const mapStateToProps = state => {
-  return {count: getCount(state)};
-};
-
-const mapDispatchToProps = {
-  addCount: addCount,
-  minusCount: minusCount,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
