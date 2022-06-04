@@ -9,6 +9,7 @@ import AddRemoveBtns from './AddRemoveBtns';
 import PlayerLives from './PlayerLives';
 import PlayerKills from './PlayerKills';
 import PlayerName from './PlayerName';
+import PlayerNotes from './PlayerNotes';
 
 const Player = ({color, top, left, right, lives, kills, ballColor, name}) => {
   // STYLES
@@ -43,6 +44,8 @@ const Player = ({color, top, left, right, lives, kills, ballColor, name}) => {
       <AddRemoveBtns lives={lives} ballColor={ballColor} />
 
       <PlayerKills ballColor={ballColor} />
+
+      <PlayerNotes />
     </View>
   );
 };
@@ -56,13 +59,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     ...shadowAround,
     width: '42%',
-  },
-  name: {
-    position: 'absolute',
-    width: '200%',
-    bottom: -25,
-    textAlign: 'center',
-    maxWidth: '100%',
   },
 });
 
