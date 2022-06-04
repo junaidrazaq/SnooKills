@@ -8,8 +8,9 @@ import {shadowAround} from '../../../_Shadow';
 import AddRemoveBtns from './AddRemoveBtns';
 import PlayerLives from './PlayerLives';
 import KillsBtn from './KillsBtn';
+import PlayerName from './PlayerName';
 
-const Player = ({color, top, left, right, lives, kills, ballColor}) => {
+const Player = ({color, top, left, right, lives, kills, ballColor, name}) => {
   // STYLES
   const position = {top: top, left: left, right: right};
   const bgColor = {backgroundColor: noLives ? '#aaa' : '#fff'};
@@ -28,22 +29,14 @@ const Player = ({color, top, left, right, lives, kills, ballColor}) => {
     <View
       center
       style={[styles.container, position, kills && killsShadow, bgColor]}>
+      <PlayerName name={name} />
+
       <Icon
         name={'circle'}
         size={60}
         color={color}
         style={{opacity: noLives ? 0.3 : 1}}
       />
-      {/* <Text
-        fontFamily="Rubik-Bold"
-        fontSize={14}
-        color={color}
-        style={[styles.name]}
-        align="center">
-        Junaid Razaq
-      </Text> */}
-      {/* <TextInput style={[styles.name]} placeholder="Enter Name" /> */}
-      {/* <PlayerName /> */}
 
       <PlayerLives noLives={noLives} lives={lives} />
 
@@ -58,10 +51,11 @@ const Player = ({color, top, left, right, lives, kills, ballColor}) => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 10,
     ...shadowAround,
+    width: '42%',
   },
   name: {
     position: 'absolute',

@@ -1,9 +1,9 @@
 import React from 'react';
 import {View} from '../../common';
-import {connect} from 'react-redux';
 import Player from './Player';
 
 // REDUX
+import {connect} from 'react-redux';
 import {
   getBlackPlayer,
   getBluePlayer,
@@ -38,6 +38,7 @@ const AllPlayers = ({
         lives={yellowPlayer.lives}
         ballColor="yellow"
         kills={yellowPlayer.kills}
+        name={yellowPlayer.name}
       />
 
       <Player // GREEN
@@ -47,6 +48,7 @@ const AllPlayers = ({
         lives={greenPlayer.lives}
         ballColor="green"
         kills={greenPlayer.kills}
+        name={greenPlayer.name}
       />
 
       <Player // BROWN
@@ -56,6 +58,7 @@ const AllPlayers = ({
         lives={brownPlayer.lives}
         ballColor="brown"
         kills={brownPlayer.kills}
+        name={brownPlayer.name}
       />
 
       <Player // BLUE
@@ -65,6 +68,7 @@ const AllPlayers = ({
         lives={bluePlayer.lives}
         ballColor="blue"
         kills={bluePlayer.kills}
+        name={bluePlayer.name}
       />
 
       <Player // PINK
@@ -74,6 +78,7 @@ const AllPlayers = ({
         lives={pinkPlayer.lives}
         ballColor="pink"
         kills={pinkPlayer.kills}
+        name={pinkPlayer.name}
       />
 
       <Player // BLACK
@@ -83,6 +88,7 @@ const AllPlayers = ({
         lives={blackPlayer.lives}
         ballColor="black"
         kills={blackPlayer.kills}
+        name={blackPlayer.name}
       />
     </View>
   );
