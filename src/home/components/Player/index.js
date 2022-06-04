@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {View} from '../../../common';
+import {Text, View} from '../../../common';
 import {shadowAround} from '../../../_Shadow';
 
 // COMPONENTS

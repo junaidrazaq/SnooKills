@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from '../../common';
 import {connect} from 'react-redux';
-import Player from './Players';
+import Player from './Player';
 
 // REDUX
 import {
