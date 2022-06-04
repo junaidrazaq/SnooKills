@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {connect} from 'react-redux';
 import {updatePlayer as updatePlayerAction} from '../../redux/actions';
 
-const KillsBtn = ({ballColor, updatePlayer}) => {
+const PlayerKills = ({ballColor, updatePlayer}) => {
   // RENDER
   return (
     <Pressable
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
 // ACTIONS
 const mapDispatchToProps = {updatePlayer: updatePlayerAction};
 
-export default connect(null, mapDispatchToProps)(KillsBtn);
+export default connect(null, mapDispatchToProps)(PlayerKills);

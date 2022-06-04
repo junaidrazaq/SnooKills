@@ -7,7 +7,7 @@ import {shadowAround} from '../../../_Shadow';
 // COMPONENTS
 import AddRemoveBtns from './AddRemoveBtns';
 import PlayerLives from './PlayerLives';
-import KillsBtn from './KillsBtn';
+import PlayerKills from './PlayerKills';
 import PlayerName from './PlayerName';
 
 const Player = ({color, top, left, right, lives, kills, ballColor, name}) => {
@@ -42,7 +42,7 @@ const Player = ({color, top, left, right, lives, kills, ballColor, name}) => {
 
       <AddRemoveBtns lives={lives} ballColor={ballColor} />
 
-      <KillsBtn ballColor={ballColor} />
+      <PlayerKills ballColor={ballColor} />
     </View>
   );
 };
