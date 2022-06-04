@@ -1,17 +1,16 @@
 import React, {useCallback} from 'react';
 import {StyleSheet} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {View} from '../../../common';
 import {shadowAround} from '../../../_Shadow';
 
 // COMPONENTS
 import AddRemoveBtns from './AddRemoveBtns';
 import PlayerLives from './PlayerLives';
-import PlayerKills from './PlayerKills';
 import PlayerName from './PlayerName';
 import PlayerNotes from './PlayerNotes';
 import {connect} from 'react-redux';
 import {updatePlayer as updatePlayerAction} from '../../redux/actions';
+import HeaderButtons from './HeaderButtons';
 
 const Player = ({
   color,
@@ -25,6 +24,7 @@ const Player = ({
   updatePlayer,
 }) => {
   // State
+  const [isNotesVisible, setIsNotesVisible] = React.useState(false);
   const noLives = lives === 0 ? true : false;
 
   // Styles
@@ -42,6 +42,7 @@ const Player = ({
     lives >= 5
       ? alert('implement_shake_animation')
       : updatePlayer({type: `${ballColor}LivesAdd`});
+    setIsNotesVisible(true);
   }, [ballColor, lives]);
 
   // FN: Remove one life
@@ -51,29 +52,43 @@ const Player = ({
       : updatePlayer({type: `${ballColor}LivesMinus`});
   }, [ballColor, lives]);
 
+  // FN: Show/Hide notes
+  const _onNotes = useCallback(() => {
+    setIsNotesVisible(prev => !prev);
+  }, [isNotesVisible]);
+
+  // FN: Close notes
+  const _onClose = useCallback(() => {
+    setIsNotesVisible(false);
+  }, [isNotesVisible]);
+
   // ------ || ------ \\
   // RENDER || RENDER \\
   return (
-    <View
-      center
-      style={[styles.container, position, kills && killsShadow, bgColor]}>
-      <PlayerName name={name} ballColor={ballColor} />
+    <>
+      <View
+        center
+        style={[styles.container, position, kills && killsShadow, bgColor]}>
+        <PlayerName name={name} ballColor={ballColor} />
 
-      <Icon
-        name={'circle'}
-        size={60}
-        color={color}
-        style={{opacity: noLives ? 0.3 : 1}}
+        <HeaderButtons
+          noLives={noLives}
+          color={color}
+          onNotesPress={_onNotes}
+          ballColor={ballColor}
+        />
+
+        <PlayerLives noLives={noLives} lives={lives} />
+
+        <AddRemoveBtns _onAdd={_onAdd} _onMinus={_onMinus} />
+      </View>
+      <PlayerNotes
+        name={name}
+        ballColor={ballColor}
+        isNotesVisible={isNotesVisible}
+        onClose={_onClose}
       />
-
-      <PlayerLives noLives={noLives} lives={lives} />
-
-      <AddRemoveBtns _onAdd={_onAdd} _onMinus={_onMinus} />
-
-      <PlayerKills ballColor={ballColor} />
-
-      <PlayerNotes />
-    </View>
+    </>
   );
 };
 

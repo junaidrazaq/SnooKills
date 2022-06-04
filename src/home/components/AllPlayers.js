@@ -30,7 +30,7 @@ const AllPlayers = ({
 
   //   RENDER
   return (
-    <View paddingHorizontal={20} center>
+    <View paddingHorizontal={20} style={{flex: 1}}>
       <Player // YELLOW
         color="#f2d54b"
         top={topPosition}
