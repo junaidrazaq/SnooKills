@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, TextInput} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Text, View} from '../../../common';
+import {View} from '../../../common';
 import {shadowAround} from '../../../_Shadow';
 
 // COMPONENTS
 import AddRemoveBtns from './AddRemoveBtns';
-import CurrentLives from './Currentlives';
+import PlayerLives from './PlayerLives';
 import KillsBtn from './KillsBtn';
 
 const Player = ({color, top, left, right, lives, kills, ballColor}) => {
@@ -43,8 +43,9 @@ const Player = ({color, top, left, right, lives, kills, ballColor}) => {
         Junaid Razaq
       </Text> */}
       {/* <TextInput style={[styles.name]} placeholder="Enter Name" /> */}
+      {/* <PlayerName /> */}
 
-      <CurrentLives noLives={noLives} lives={lives} />
+      <PlayerLives noLives={noLives} lives={lives} />
 
       <AddRemoveBtns lives={lives} ballColor={ballColor} />
 
