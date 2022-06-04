@@ -14,14 +14,14 @@ const AddRemoveBtns = ({ballColor, lives, updatePlayer}) => {
   const _addLife = useCallback(() => {
     lives >= 5
       ? alert('implement_shake_animation')
-      : updatePlayer(`${ballColor}LivesAdd`);
+      : updatePlayer({type: `${ballColor}LivesAdd`});
   }, [ballColor, lives]);
 
   // FN: REMOVE LIFE
   const _minusLife = useCallback(() => {
     lives <= 0
       ? alert('implement_shake_animation')
-      : updatePlayer(`${ballColor}LivesMinus`);
+      : updatePlayer({type: `${ballColor}LivesMinus`});
   }, [ballColor, lives]);
 
   // RENDER

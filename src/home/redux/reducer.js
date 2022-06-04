@@ -20,17 +20,17 @@ export default function reducer(state = INITIAL_STATE, action) {
         // ******* *|_Yellow_|* ------ \\
         yellow: {
           lives:
-            payload === 'yellowLivesAdd' // ** Update Lives ** \\
+            payload.type === 'yellowLivesAdd' // ** Update Lives ** \\
               ? state.yellow.lives + 1
-              : payload === 'yellowLivesMinus'
+              : payload.type === 'yellowLivesMinus'
               ? state.yellow.lives - 1
               : state.yellow.lives,
           kills:
-            payload === 'yellowKills' // ** Update Kills ** \\
+            payload.type === 'yellowKills' // ** Update Kills ** \\
               ? !state.yellow.kills
               : state.yellow.kills,
           name:
-            payload === 'yellowName' // ** Update Name ** \\
+            payload.type === 'yellowName' // ** Update Name ** \\
               ? payload.name
               : state.yellow.name,
         },
@@ -38,17 +38,17 @@ export default function reducer(state = INITIAL_STATE, action) {
         // ******* *|_Green_|* ------ \\
         green: {
           lives:
-            payload === 'greenLivesAdd' // ** Update Lives ** \\
+            payload.type === 'greenLivesAdd' // ** Update Lives ** \\
               ? state.green.lives + 1
-              : payload === 'greenLivesMinus'
+              : payload.type === 'greenLivesMinus'
               ? state.green.lives - 1
               : state.green.lives,
           kills:
-            payload === 'greenKills' // ** Update Kills ** \\
+            payload.type === 'greenKills' // ** Update Kills ** \\
               ? !state.green.kills
               : state.green.kills,
           name:
-            payload === 'greenName' // ** Update Name ** \\
+            payload.type === 'greenName' // ** Update Name ** \\
               ? payload.name
               : state.green.name,
         },
@@ -56,17 +56,17 @@ export default function reducer(state = INITIAL_STATE, action) {
         // ******* *|_Brown_|* ------ \\
         brown: {
           lives:
-            payload === 'brownLivesAdd' // ** Update Lives ** \\
+            payload.type === 'brownLivesAdd' // ** Update Lives ** \\
               ? state.brown.lives + 1
-              : payload === 'brownLivesMinus'
+              : payload.type === 'brownLivesMinus'
               ? state.brown.lives - 1
               : state.brown.lives,
           kills:
-            payload === 'brownKills' // ** Update Kills ** \\
+            payload.type === 'brownKills' // ** Update Kills ** \\
               ? !state.brown.kills
               : state.brown.kills,
           name:
-            payload === 'brownName' // ** Update Name ** \\
+            payload.type === 'brownName' // ** Update Name ** \\
               ? payload.name
               : state.brown.name,
         },
@@ -74,17 +74,17 @@ export default function reducer(state = INITIAL_STATE, action) {
         // ******* *|_Blue_|* ------ \\
         blue: {
           lives:
-            payload === 'blueLivesAdd' // ** Update Lives ** \\
+            payload.type === 'blueLivesAdd' // ** Update Lives ** \\
               ? state.blue.lives + 1
-              : payload === 'blueLivesMinus'
+              : payload.type === 'blueLivesMinus'
               ? state.blue.lives - 1
               : state.blue.lives,
           kills:
-            payload === 'blueKills' // ** Update Kills ** \\
+            payload.type === 'blueKills' // ** Update Kills ** \\
               ? !state.blue.kills
               : state.blue.kills,
           name:
-            payload === 'blueName' // ** Update Name ** \\
+            payload.type === 'blueName' // ** Update Name ** \\
               ? payload.name
               : state.blue.name,
         },
@@ -92,17 +92,17 @@ export default function reducer(state = INITIAL_STATE, action) {
         // ******* *|_Pink_|* ------ \\
         pink: {
           lives:
-            payload === 'pinkLivesAdd' // ** Update Lives ** \\
+            payload.type === 'pinkLivesAdd' // ** Update Lives ** \\
               ? state.pink.lives + 1
-              : payload === 'pinkLivesMinus'
+              : payload.type === 'pinkLivesMinus'
               ? state.pink.lives - 1
               : state.pink.lives,
           kills:
-            payload === 'pinkKills' // ** Update Kills ** \\
+            payload.type === 'pinkKills' // ** Update Kills ** \\
               ? !state.pink.kills
               : state.pink.kills,
           name:
-            payload === 'pinkName' // ** Update Name ** \\
+            payload.type === 'pinkName' // ** Update Name ** \\
               ? payload.name
               : state.pink.name,
         },
@@ -110,17 +110,17 @@ export default function reducer(state = INITIAL_STATE, action) {
         // ******* *|_Black_|* ------ \\
         black: {
           lives:
-            payload === 'blackLivesAdd' // ** Update Lives ** \\
+            payload.type === 'blackLivesAdd' // ** Update Lives ** \\
               ? state.black.lives + 1
-              : payload === 'blackLivesMinus'
+              : payload.type === 'blackLivesMinus'
               ? state.black.lives - 1
               : state.black.lives,
           kills:
-            payload === 'blackKills' // ** Update Kills ** \\
+            payload.type === 'blackKills' // ** Update Kills ** \\
               ? !state.black.kills
               : state.black.kills,
           name:
-            payload === 'blackName' // ** Update Name ** \\
+            payload.type === 'blackName' // ** Update Name ** \\
               ? payload.name
               : state.black.name,
         },

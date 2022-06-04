@@ -1,17 +1,17 @@
 import React from 'react';
 import {Pressable} from '../../../common';
 import {StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // REDUX
 import {connect} from 'react-redux';
 import {updatePlayer as updatePlayerAction} from '../../redux/actions';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const KillsBtn = ({ballColor, updatePlayer}) => {
   // RENDER
   return (
     <Pressable
-      onPress={() => updatePlayer(`${ballColor}Kills`)}
+      onPress={() => updatePlayer({type: `${ballColor}Kills`})}
       containerStyles={styles.kills}>
       <Icon name="plus" size={17} color="#fff" />
     </Pressable>
@@ -37,5 +37,3 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = {updatePlayer: updatePlayerAction};
 
 export default connect(null, mapDispatchToProps)(KillsBtn);
-
-// export default KillsBtn;
