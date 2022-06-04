@@ -36,7 +36,6 @@ const AllPlayers = ({
   pinkKills,
   blackKills,
 }) => {
-  const playerSize = 60;
   const topPosition = 20;
   const middlePosition = 250;
   const bottomPosition = 480;
@@ -45,9 +44,7 @@ const AllPlayers = ({
   return (
     <View paddingHorizontal={20} center>
       <Player // YELLOW
-        name="circle"
         color="#f2d54b"
-        size={playerSize}
         top={topPosition}
         left={20}
         lives={yellowLives}
@@ -56,9 +53,7 @@ const AllPlayers = ({
       />
 
       <Player // GREEN
-        name="circle"
         color="#3a8a47"
-        size={playerSize}
         top={topPosition}
         right={20}
         lives={greenLives}
@@ -67,9 +62,7 @@ const AllPlayers = ({
       />
 
       <Player // BROWN
-        name="circle"
         color="#8B4513"
-        size={playerSize}
         top={middlePosition}
         left={20}
         lives={brownLives}
@@ -78,9 +71,7 @@ const AllPlayers = ({
       />
 
       <Player // BLUE
-        name="circle"
         color="#2b29c2"
-        size={playerSize}
         top={middlePosition}
         right={20}
         lives={blueLives}
@@ -89,9 +80,7 @@ const AllPlayers = ({
       />
 
       <Player // PINK
-        name="circle"
         color="#c92080"
-        size={playerSize}
         top={bottomPosition}
         left={20}
         lives={pinkLives}
@@ -100,9 +89,7 @@ const AllPlayers = ({
       />
 
       <Player // BLACK
-        name="circle"
         color="#000"
-        size={playerSize}
         top={bottomPosition}
         right={20}
         lives={blackLives}

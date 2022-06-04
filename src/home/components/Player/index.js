@@ -9,17 +9,7 @@ import AddRemoveBtns from './AddRemoveBtns';
 import CurrentLives from './Currentlives';
 import KillsBtn from './KillsBtn';
 
-const Player = ({
-  name,
-  size,
-  color,
-  top,
-  left,
-  right,
-  lives,
-  kills,
-  ballColor,
-}) => {
+const Player = ({color, top, left, right, lives, kills, ballColor}) => {
   // STYLES
   const position = {top: top, left: left, right: right};
   const bgColor = {backgroundColor: noLives ? '#aaa' : '#fff'};
@@ -39,8 +29,8 @@ const Player = ({
       center
       style={[styles.container, position, kills && killsShadow, bgColor]}>
       <Icon
-        name={name}
-        size={size}
+        name={'circle'}
+        size={60}
         color={color}
         style={{opacity: noLives ? 0.3 : 1}}
       />
@@ -81,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Player;
+export default React.memo(Player);
