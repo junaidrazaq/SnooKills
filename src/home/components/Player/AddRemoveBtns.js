@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {Pressable, View} from '../../../common';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -6,31 +6,17 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {connect} from 'react-redux';
 import {updatePlayer as updatePlayerAction} from '../../redux/actions';
 
-const AddRemoveBtns = ({ballColor, lives, updatePlayer}) => {
+const AddRemoveBtns = ({_onAdd, _onMinus}) => {
   // STYLES
   const styles = {paddingTop: 5, width: '100%'};
-
-  // FN: ADD LIFE
-  const _addLife = useCallback(() => {
-    lives >= 5
-      ? alert('implement_shake_animation')
-      : updatePlayer({type: `${ballColor}LivesAdd`});
-  }, [ballColor, lives]);
-
-  // FN: REMOVE LIFE
-  const _minusLife = useCallback(() => {
-    lives <= 0
-      ? alert('implement_shake_animation')
-      : updatePlayer({type: `${ballColor}LivesMinus`});
-  }, [ballColor, lives]);
 
   // RENDER
   return (
     <View horizontal style={styles} justifyContent="space-between">
-      <Pressable onPress={() => _minusLife()}>
+      <Pressable onPress={() => _onMinus()}>
         <Icon name="minus" size={30} color="red" />
       </Pressable>
-      <Pressable onPress={() => _addLife()}>
+      <Pressable onPress={() => _onAdd()}>
         <Icon name="plus" size={30} color="green" />
       </Pressable>
     </View>

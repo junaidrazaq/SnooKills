@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {View} from '../../../common';
@@ -10,9 +10,24 @@ import PlayerLives from './PlayerLives';
 import PlayerKills from './PlayerKills';
 import PlayerName from './PlayerName';
 import PlayerNotes from './PlayerNotes';
+import {connect} from 'react-redux';
+import {updatePlayer as updatePlayerAction} from '../../redux/actions';
 
-const Player = ({color, top, left, right, lives, kills, ballColor, name}) => {
-  // STYLES
+const Player = ({
+  color,
+  top,
+  left,
+  right,
+  lives,
+  kills,
+  ballColor,
+  name,
+  updatePlayer,
+}) => {
+  // State
+  const noLives = lives === 0 ? true : false;
+
+  // Styles
   const position = {top: top, left: left, right: right};
   const bgColor = {backgroundColor: noLives ? '#aaa' : '#fff'};
   const killsShadow = {
@@ -22,10 +37,22 @@ const Player = ({color, top, left, right, lives, kills, ballColor, name}) => {
     elevation: 10,
   };
 
-  // CONDITIONALS
-  const noLives = lives === 0 ? true : false;
+  // FN: Add one life
+  const _onAdd = useCallback(() => {
+    lives >= 5
+      ? alert('implement_shake_animation')
+      : updatePlayer({type: `${ballColor}LivesAdd`});
+  }, [ballColor, lives]);
 
-  // RENDER
+  // FN: Remove one life
+  const _onMinus = useCallback(() => {
+    lives <= 0
+      ? alert('implement_shake_animation')
+      : updatePlayer({type: `${ballColor}LivesMinus`});
+  }, [ballColor, lives]);
+
+  // ------ || ------ \\
+  // RENDER || RENDER \\
   return (
     <View
       center
@@ -41,7 +68,7 @@ const Player = ({color, top, left, right, lives, kills, ballColor, name}) => {
 
       <PlayerLives noLives={noLives} lives={lives} />
 
-      <AddRemoveBtns lives={lives} ballColor={ballColor} />
+      <AddRemoveBtns _onAdd={_onAdd} _onMinus={_onMinus} />
 
       <PlayerKills ballColor={ballColor} />
 
@@ -62,4 +89,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(Player);
+// ACTIONS
+const mapDispatchToProps = {updatePlayer: updatePlayerAction};
+
+export default connect(null, mapDispatchToProps)(React.memo(Player));
