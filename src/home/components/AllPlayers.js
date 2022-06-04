@@ -5,36 +5,24 @@ import Player from './Player';
 
 // REDUX
 import {
-  getBlackKills,
-  getBlackLives,
-  getBlueKills,
-  getBlueLives,
-  getBrownKills,
-  getBrownLives,
-  getGreenKills,
-  getGreenLives,
-  getPinkKills,
-  getPinkLives,
-  getYellowKills,
-  getYelowLives,
+  getBlackPlayer,
+  getBluePlayer,
+  getBrownPlayer,
+  getGreenPlayer,
+  getPinkPlayer,
+  getYellowPlayer,
 } from '../redux/selectors';
 
 // ** ------
 // ALL_PLAYERS_COMPONENT
 // ------ **
 const AllPlayers = ({
-  yellowLives,
-  greenLives,
-  brownLives,
-  blueLives,
-  pinkLives,
-  blackLives,
-  yellowKills,
-  greenKills,
-  brownKills,
-  blueKills,
-  pinkKills,
-  blackKills,
+  yellowPlayer,
+  greenPlayer,
+  brownPlayer,
+  bluePlayer,
+  pinkPlayer,
+  blackPlayer,
 }) => {
   const topPosition = 20;
   const middlePosition = 250;
@@ -47,54 +35,54 @@ const AllPlayers = ({
         color="#f2d54b"
         top={topPosition}
         left={20}
-        lives={yellowLives}
+        lives={yellowPlayer.lives}
         ballColor="yellow"
-        kills={yellowKills}
+        kills={yellowPlayer.kills}
       />
 
       <Player // GREEN
         color="#3a8a47"
         top={topPosition}
         right={20}
-        lives={greenLives}
+        lives={greenPlayer.lives}
         ballColor="green"
-        kills={greenKills}
+        kills={greenPlayer.kills}
       />
 
       <Player // BROWN
         color="#8B4513"
         top={middlePosition}
         left={20}
-        lives={brownLives}
+        lives={brownPlayer.lives}
         ballColor="brown"
-        kills={brownKills}
+        kills={brownPlayer.kills}
       />
 
       <Player // BLUE
         color="#2b29c2"
         top={middlePosition}
         right={20}
-        lives={blueLives}
+        lives={bluePlayer.lives}
         ballColor="blue"
-        kills={blueKills}
+        kills={bluePlayer.kills}
       />
 
       <Player // PINK
         color="#c92080"
         top={bottomPosition}
         left={20}
-        lives={pinkLives}
+        lives={pinkPlayer.lives}
         ballColor="pink"
-        kills={pinkKills}
+        kills={pinkPlayer.kills}
       />
 
       <Player // BLACK
         color="#000"
         top={bottomPosition}
         right={20}
-        lives={blackLives}
+        lives={blackPlayer.lives}
         ballColor="black"
-        kills={blackKills}
+        kills={blackPlayer.kills}
       />
     </View>
   );
@@ -103,18 +91,12 @@ const AllPlayers = ({
 // STATE
 const mapStateToProps = state => {
   return {
-    yellowLives: getYelowLives(state),
-    greenLives: getGreenLives(state),
-    brownLives: getBrownLives(state),
-    blueLives: getBlueLives(state),
-    pinkLives: getPinkLives(state),
-    blackLives: getBlackLives(state),
-    yellowKills: getYellowKills(state),
-    greenKills: getGreenKills(state),
-    brownKills: getBrownKills(state),
-    blueKills: getBlueKills(state),
-    pinkKills: getPinkKills(state),
-    blackKills: getBlackKills(state),
+    yellowPlayer: getYellowPlayer(state),
+    greenPlayer: getGreenPlayer(state),
+    brownPlayer: getBrownPlayer(state),
+    bluePlayer: getBluePlayer(state),
+    pinkPlayer: getPinkPlayer(state),
+    blackPlayer: getBlackPlayer(state),
   };
 };
 

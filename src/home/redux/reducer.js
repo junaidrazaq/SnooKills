@@ -1,87 +1,92 @@
 import * as constants from './constants';
 
 export const INITIAL_STATE = {
-  yellowLives: 3,
-  greenLives: 3,
-  brownLives: 3,
-  blueLives: 3,
-  pinkLives: 3,
-  blackLives: 3,
-  yellowKills: false,
-  greenKills: false,
-  brownKills: false,
-  blueKills: false,
-  pinkKills: false,
-  blackKills: false,
+  yellow: {lives: 3, kills: false},
+  green: {lives: 3, kills: false},
+  brown: {lives: 3, kills: false},
+  blue: {lives: 3, kills: false},
+  pink: {lives: 3, kills: false},
+  black: {lives: 3, kills: false},
 };
 
 export default function reducer(state = INITIAL_STATE, action) {
   const {type, payload} = action;
 
   switch (type) {
-    case constants.ADD_LIVES.SUCCESS:
+    case constants.UPDATE_PLAYER.SUCCESS: // ** Update Player State ** \\
       return {
         ...state,
-        yellowLives:
-          payload === 'yellow' ? state.yellowLives + 1 : state.yellowLives,
-        greenLives:
-          payload === 'green' ? state.greenLives + 1 : state.greenLives,
-        brownLives:
-          payload === 'brown' ? state.brownLives + 1 : state.brownLives,
-        blueLives: payload === 'blue' ? state.blueLives + 1 : state.blueLives,
-        pinkLives: payload === 'pink' ? state.pinkLives + 1 : state.pinkLives,
-        blackLives:
-          payload === 'black' ? state.blackLives + 1 : state.blackLives,
+        yellow: {
+          lives:
+            payload === 'yellowLivesAdd'
+              ? state.yellow.lives + 1
+              : payload === 'yellowLivesMinus'
+              ? state.yellow.lives - 1
+              : state.yellow.lives,
+          kills:
+            payload === 'yellowKills'
+              ? !state.yellow.kills
+              : state.yellow.kills,
+        },
+        green: {
+          lives:
+            payload === 'greenLivesAdd'
+              ? state.green.lives + 1
+              : payload === 'greenLivesMinus'
+              ? state.green.lives - 1
+              : state.green.lives,
+          kills:
+            payload === 'greenKills' ? !state.green.kills : state.green.kills,
+        },
+        brown: {
+          lives:
+            payload === 'brownLivesAdd'
+              ? state.brown.lives + 1
+              : payload === 'brownLivesMinus'
+              ? state.brown.lives - 1
+              : state.brown.lives,
+          kills:
+            payload === 'brownKills' ? !state.brown.kills : state.brown.kills,
+        },
+        blue: {
+          lives:
+            payload === 'blueLivesAdd'
+              ? state.blue.lives + 1
+              : payload === 'blueLivesMinus'
+              ? state.blue.lives - 1
+              : state.blue.lives,
+          kills: payload === 'blueKills' ? !state.blue.kills : state.blue.kills,
+        },
+        pink: {
+          lives:
+            payload === 'pinkLivesAdd'
+              ? state.pink.lives + 1
+              : payload === 'pinkLivesMinus'
+              ? state.pink.lives - 1
+              : state.pink.lives,
+          kills: payload === 'pinkKills' ? !state.pink.kills : state.pink.kills,
+        },
+        black: {
+          lives:
+            payload === 'blackLivesAdd'
+              ? state.black.lives + 1
+              : payload === 'blackLivesMinus'
+              ? state.blackLives - 1
+              : state.black.lives,
+          kills:
+            payload === 'blackKills' ? !state.black.kills : state.black.kills,
+        },
       };
 
-    case constants.MINUS_LIVES.SUCCESS:
+    case constants.RESET_STATE.SUCCESS: // Reset game
       return {
         ...state,
-        yellowLives:
-          payload === 'yellow' ? state.yellowLives - 1 : state.yellowLives,
-        yellowKills: payload === 'yellow' ? false : state.yellowKills,
-        greenLives:
-          payload === 'green' ? state.greenLives - 1 : state.greenLives,
-        greenKills: payload === 'green' ? false : state.greenKills,
-        brownLives:
-          payload === 'brown' ? state.brownLives - 1 : state.brownLives,
-        brownKills: payload === 'brown' ? false : state.brownKills,
-        blueLives: payload === 'blue' ? state.blueLives - 1 : state.blueLives,
-        blueKills: payload === 'blue' ? false : state.blueKills,
-        pinkLives: payload === 'pink' ? state.pinkLives - 1 : state.pinkLives,
-        pinkKills: payload === 'pink' ? false : state.pinkKills,
-        blackLives:
-          payload === 'black' ? state.blackLives - 1 : state.blackLives,
-        blackKills: payload === 'black' ? false : state.blackKills,
-      };
-
-    case constants.TOGGLE_KILLS.SUCCESS:
-      return {
-        ...state,
-        yellowKills:
-          payload === 'yellow' ? !state.yellowKills : state.yellowKills,
-        greenKills: payload === 'green' ? !state.greenKills : state.greenKills,
-        brownKills: payload === 'brown' ? !state.brownKills : state.brownKills,
-        blueKills: payload === 'blue' ? !state.blueKills : state.blueKills,
-        pinkKills: payload === 'pink' ? !state.pinkKills : state.pinkKills,
-        blackKills: payload === 'black' ? !state.blackKills : state.blackKills,
-      };
-
-    case constants.RESET_STATE.SUCCESS:
-      return {
-        ...state,
-        yellowLives: 3,
-        greenLives: 3,
-        brownLives: 3,
-        blueLives: 3,
-        pinkLives: 3,
-        blackLives: 3,
-        yellowKills: false,
-        greenKills: false,
-        brownKills: false,
-        blueKills: false,
-        pinkKills: false,
-        blackKills: false,
+        yellow: {lives: 3, kills: false},
+        green: {lives: 3, kills: false},
+        brown: {lives: 3, kills: false},
+        blue: {lives: 3, kills: false},
+        pink: {lives: 3, kills: false},
+        black: {lives: 3, kills: false},
       };
 
     default:

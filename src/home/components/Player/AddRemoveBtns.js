@@ -4,20 +4,21 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // REDUX
 import {connect} from 'react-redux';
-import {
-  addLife as addLifeAction,
-  minusLife as minusLifeAction,
-} from '../../redux/actions';
+import {updatePlayer as updatePlayerAction} from '../../redux/actions';
 
-const AddRemoveBtns = ({ballColor, lives, addLife, minusLife}) => {
+const AddRemoveBtns = ({ballColor, lives, updatePlayer}) => {
   // FN'S
   const _addLife = useCallback(() => {
-    lives >= 5 ? alert('implement_shake_animation') : addLife(ballColor);
-  }, [addLife, ballColor, lives]);
+    lives >= 5
+      ? alert('implement_shake_animation')
+      : updatePlayer(`${ballColor}LivesAdd`);
+  }, [ballColor, lives]);
 
   const _minusLife = useCallback(() => {
-    lives <= 0 ? alert('implement_shake_animation') : minusLife(ballColor);
-  }, [minusLife, ballColor, lives]);
+    lives <= 0
+      ? alert('implement_shake_animation')
+      : updatePlayer(`${ballColor}LivesMinus`);
+  }, [ballColor, lives]);
 
   // RENDER
   return (
@@ -33,6 +34,6 @@ const AddRemoveBtns = ({ballColor, lives, addLife, minusLife}) => {
 };
 
 // ACTIONS
-const mapDispatchToProps = {addLife: addLifeAction, minusLife: minusLifeAction};
+const mapDispatchToProps = {updatePlayer: updatePlayerAction};
 
 export default connect(null, mapDispatchToProps)(AddRemoveBtns);
