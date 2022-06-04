@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {Pressable, View} from '../../../common';
+import {Pressable, Text, View} from '../../../common';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // REDUX
@@ -22,6 +22,9 @@ const AddRemoveBtns = ({ballColor, lives, addLife, minusLife}) => {
   // RENDER
   return (
     <View horizontal style={{paddingTop: 10, width: '200%'}}>
+      {/* <View style={{position: 'absolute'}}>
+        <Text>Heleo</Text>
+      </View> */}
       <Pressable onPress={() => _minusLife()}>
         <Icon name="minus" size={30} color="red" style={{left: 10}} />
       </Pressable>

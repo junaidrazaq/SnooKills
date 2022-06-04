@@ -27,6 +27,7 @@ const Player = ({
     shadowColor: 'red',
     shadowRadius: 10,
     shadowOpacity: 0.4,
+    elevation: 10,
   };
 
   // CONDITIONALS
@@ -43,6 +44,15 @@ const Player = ({
         color={color}
         style={{opacity: noLives ? 0.3 : 1}}
       />
+      {/* <Text
+        fontFamily="Rubik-Bold"
+        fontSize={14}
+        color={color}
+        style={[styles.name]}
+        align="center">
+        Junaid Razaq
+      </Text> */}
+      {/* <TextInput style={[styles.name]} placeholder="Enter Name" /> */}
 
       <CurrentLives noLives={noLives} lives={lives} />
 
@@ -61,6 +71,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 10,
     ...shadowAround,
+  },
+  name: {
+    position: 'absolute',
+    width: '200%',
+    bottom: -25,
+    textAlign: 'center',
+    maxWidth: '100%',
   },
 });
 
