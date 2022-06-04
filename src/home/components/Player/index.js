@@ -29,7 +29,7 @@ const Player = ({color, top, left, right, lives, kills, ballColor, name}) => {
     <View
       center
       style={[styles.container, position, kills && killsShadow, bgColor]}>
-      <PlayerName name={name} />
+      <PlayerName name={name} ballColor={ballColor} />
 
       <Icon
         name={'circle'}
