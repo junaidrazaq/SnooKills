@@ -1,12 +1,12 @@
 import * as constants from './constants';
 
 export const INITIAL_STATE = {
-  yellow: {lives: 3, kills: false, name: null},
-  green: {lives: 3, kills: false, name: null},
-  brown: {lives: 3, kills: false, name: null},
-  blue: {lives: 3, kills: false, name: null},
-  pink: {lives: 3, kills: false, name: null},
-  black: {lives: 3, kills: false, name: null},
+  yellow: {lives: 3, kills: false, name: null, notes: null},
+  green: {lives: 3, kills: false, name: null, notes: null},
+  brown: {lives: 3, kills: false, name: null, notes: null},
+  blue: {lives: 3, kills: false, name: null, notes: null},
+  pink: {lives: 3, kills: false, name: null, notes: null},
+  black: {lives: 3, kills: false, name: null, notes: null},
 };
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -33,6 +33,10 @@ export default function reducer(state = INITIAL_STATE, action) {
             payload.type === 'yellowName' // ** Update Name ** \\
               ? payload.name
               : state.yellow.name,
+          notes:
+            payload.type === 'yellowNotes' // ** Update Notes ** \\
+              ? payload.notes
+              : state.yellow.notes,
         },
 
         // ******* *|_Green_|* ------ \\
@@ -51,6 +55,10 @@ export default function reducer(state = INITIAL_STATE, action) {
             payload.type === 'greenName' // ** Update Name ** \\
               ? payload.name
               : state.green.name,
+          notes:
+            payload.type === 'greenNotes' // ** Update Notes ** \\
+              ? payload.notes
+              : state.green.notes,
         },
 
         // ******* *|_Brown_|* ------ \\
@@ -69,6 +77,10 @@ export default function reducer(state = INITIAL_STATE, action) {
             payload.type === 'brownName' // ** Update Name ** \\
               ? payload.name
               : state.brown.name,
+          notes:
+            payload.type === 'brownNotes' // ** Update Notes ** \\
+              ? payload.notes
+              : state.brown.notes,
         },
 
         // ******* *|_Blue_|* ------ \\
@@ -87,6 +99,10 @@ export default function reducer(state = INITIAL_STATE, action) {
             payload.type === 'blueName' // ** Update Name ** \\
               ? payload.name
               : state.blue.name,
+          notes:
+            payload.type === 'blueNotes' // ** Update Notes ** \\
+              ? payload.notes
+              : state.blue.notes,
         },
 
         // ******* *|_Pink_|* ------ \\
@@ -105,6 +121,11 @@ export default function reducer(state = INITIAL_STATE, action) {
             payload.type === 'pinkName' // ** Update Name ** \\
               ? payload.name
               : state.pink.name,
+
+          notes:
+            payload.type === 'pinkNotes' // ** Update Notes ** \\
+              ? payload.notes
+              : state.pink.notes,
         },
 
         // ******* *|_Black_|* ------ \\
@@ -123,18 +144,22 @@ export default function reducer(state = INITIAL_STATE, action) {
             payload.type === 'blackName' // ** Update Name ** \\
               ? payload.name
               : state.black.name,
+          notes:
+            payload.type === 'blackNotes' // ** Update Notes ** \\
+              ? payload.notes
+              : state.black.notes,
         },
       };
 
     case constants.RESET_STATE.SUCCESS: // Reset game
       return {
         ...state,
-        yellow: {lives: 3, kills: false, name: ''},
-        brown: {lives: 3, kills: false, name: ''},
-        green: {lives: 3, kills: false, name: ''},
-        blue: {lives: 3, kills: false, name: ''},
-        pink: {lives: 3, kills: false, name: ''},
-        black: {lives: 3, kills: false, name: ''},
+        yellow: {lives: 3, kills: false, name: '', notes: null},
+        brown: {lives: 3, kills: false, name: '', notes: null},
+        green: {lives: 3, kills: false, name: '', notes: null},
+        blue: {lives: 3, kills: false, name: '', notes: null},
+        pink: {lives: 3, kills: false, name: '', notes: null},
+        black: {lives: 3, kills: false, name: '', notes: null},
       };
 
     default:
