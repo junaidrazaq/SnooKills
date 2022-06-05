@@ -39,6 +39,7 @@ const AllPlayers = ({
         ballColor="yellow"
         kills={yellowPlayer.kills}
         name={yellowPlayer.name}
+        notes={yellowPlayer.notes}
       />
 
       <Player // GREEN
@@ -49,6 +50,7 @@ const AllPlayers = ({
         ballColor="green"
         kills={greenPlayer.kills}
         name={greenPlayer.name}
+        notes={greenPlayer.notes}
       />
 
       <Player // BROWN
@@ -59,6 +61,7 @@ const AllPlayers = ({
         ballColor="brown"
         kills={brownPlayer.kills}
         name={brownPlayer.name}
+        notes={brownPlayer.notes}
       />
 
       <Player // BLUE
@@ -69,6 +72,7 @@ const AllPlayers = ({
         ballColor="blue"
         kills={bluePlayer.kills}
         name={bluePlayer.name}
+        notes={bluePlayer.notes}
       />
 
       <Player // PINK
@@ -79,6 +83,7 @@ const AllPlayers = ({
         ballColor="pink"
         kills={pinkPlayer.kills}
         name={pinkPlayer.name}
+        notes={pinkPlayer.notes}
       />
 
       <Player // BLACK
@@ -89,6 +94,7 @@ const AllPlayers = ({
         ballColor="black"
         kills={blackPlayer.kills}
         name={blackPlayer.name}
+        notes={blackPlayer.notes}
       />
     </View>
   );

@@ -4,13 +4,18 @@ import {StyleSheet} from 'react-native';
 import {shadowAround} from '../../../_Shadow';
 import Notes from './Notes';
 
-const PlayerNotes = ({isNotesVisible, name, ballColor, onClose}) => {
+const PlayerNotes = ({isNotesVisible, name, ballColor, onClose, notes}) => {
   // RENDER
   return (
     isNotesVisible && (
       <View style={styles.container}>
         <View style={styles.modalContainer}>
-          <Notes name={name} ballColor={ballColor} onClose={onClose} />
+          <Notes
+            name={name}
+            ballColor={ballColor}
+            onClose={onClose}
+            notes={notes}
+          />
         </View>
       </View>
     )
@@ -37,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PlayerNotes;
+export default React.memo(PlayerNotes);

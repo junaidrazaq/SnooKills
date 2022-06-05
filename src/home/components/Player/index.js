@@ -22,6 +22,7 @@ const Player = ({
   ballColor,
   name,
   updatePlayer,
+  notes,
 }) => {
   // State
   const [isNotesVisible, setIsNotesVisible] = React.useState(false);
@@ -83,10 +84,12 @@ const Player = ({
 
         <AddRemoveBtns _onAdd={_onAdd} _onMinus={_onMinus} />
       </View>
+
       <PlayerNotes
         name={name}
         ballColor={ballColor}
         isNotesVisible={isNotesVisible}
+        notes={notes}
         onClose={_onClose}
       />
     </>
