@@ -39,10 +39,11 @@ const Player = ({
 
   // FN: Add one life
   const _onAdd = useCallback(() => {
-    lives >= 5
-      ? alert('implement_shake_animation')
-      : updatePlayer({type: `${ballColor}LivesAdd`});
-    setIsNotesVisible(true);
+    if (lives < 5) {
+      updatePlayer({type: `${ballColor}LivesAdd`});
+      // setIsNotesVisible(true);
+    }
+    lives >= 5 && alert('implement_shake_animation');
   }, [ballColor, lives]);
 
   // FN: Remove one life
