@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconButton from 'react-native-vector-icons/MaterialIcons';
-import {Pressable} from '../../../common';
+import {Pressable, Text} from '../../../common';
 import {StyleSheet} from 'react-native';
 
 // REDUX
@@ -14,6 +14,7 @@ const HeaderButtons = ({
   ballColor,
   onNotesPress,
   updatePlayer,
+  kills,
 }) => {
   // RENDER
   return (
@@ -31,8 +32,14 @@ const HeaderButtons = ({
       </Pressable>
       <Pressable
         onPress={() => updatePlayer({type: `${ballColor}Kills`})}
-        containerStyles={styles.kills}>
-        <Icon name="plus" size={17} color="#fff" />
+        containerStyles={[
+          styles.kills,
+          {backgroundColor: kills ? '#ed5740' : '#aaa'},
+        ]}>
+        <Text fontFamily="Rubik-Medium" color="#fff">
+          Kills
+        </Text>
+        {/* <Icon name="plus" size={17} color="#fff" /> */}
       </Pressable>
     </>
   );
@@ -50,12 +57,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -10,
     right: -10,
-    width: 20,
-    height: 20,
-    backgroundColor: 'red',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 });
 

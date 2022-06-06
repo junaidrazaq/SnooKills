@@ -80,6 +80,7 @@ const Player = ({
           color={color}
           onNotesPress={_onNotes}
           ballColor={ballColor}
+          kills={kills}
         />
 
         <PlayerLives noLives={noLives} lives={lives} />
