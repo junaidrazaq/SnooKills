@@ -11,6 +11,7 @@ import PlayerNotes from './PlayerNotes';
 import {connect} from 'react-redux';
 import {updatePlayer as updatePlayerAction} from '../../redux/actions';
 import HeaderButtons from './HeaderButtons';
+import AddNoteForm from './AddNoteForm';
 
 const Player = ({
   color,
@@ -26,6 +27,7 @@ const Player = ({
 }) => {
   // State
   const [isNotesVisible, setIsNotesVisible] = React.useState(false);
+  const [addNote, setAddNote] = React.useState(false);
   const noLives = lives === 0 ? true : false;
 
   // Styles
@@ -42,7 +44,7 @@ const Player = ({
   const _onAdd = useCallback(() => {
     if (lives < 5) {
       updatePlayer({type: `${ballColor}LivesAdd`});
-      // setIsNotesVisible(true);
+      setAddNote(true);
     }
     lives >= 5 && alert('implement_shake_animation');
   }, [ballColor, lives]);
@@ -92,6 +94,14 @@ const Player = ({
         notes={notes}
         onClose={_onClose}
       />
+
+      {addNote && (
+        <AddNoteForm
+          name={name}
+          ballColor={ballColor}
+          onClose={() => setAddNote(false)}
+        />
+      )}
     </>
   );
 };
