@@ -29,6 +29,7 @@ const Player = ({
   const [isNotesVisible, setIsNotesVisible] = React.useState(false);
   const [gainedLifeNote, setGainedLifeNote] = React.useState(false);
   const [lostLifeNote, setLostLifeNote] = React.useState(false);
+  const [onKills, setOnKills] = React.useState(false);
   const noLives = lives === 0 ? true : false;
 
   // Styles
@@ -85,6 +86,7 @@ const Player = ({
           onNotesPress={_onNotes}
           ballColor={ballColor}
           kills={kills}
+          onPress={() => setOnKills(true)}
         />
 
         <PlayerLives noLives={noLives} lives={lives} />
@@ -109,6 +111,17 @@ const Player = ({
           gainedLife
         />
       )}
+
+      {onKills && (
+        <AddNoteForm
+          name={name}
+          ballColor={ballColor}
+          lives={lives}
+          onClose={() => setOnKills(false)}
+          onKills
+        />
+      )}
+
       {lostLifeNote && (
         <AddNoteForm
           name={name}

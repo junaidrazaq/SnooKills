@@ -15,7 +15,19 @@ const HeaderButtons = ({
   onNotesPress,
   updatePlayer,
   kills,
+  onPress,
 }) => {
+  // FN: Toggle Kills and add note
+  const _handleKills = async () => {
+    if (!kills) {
+      await onPress();
+      await updatePlayer({type: `${ballColor}Kills`, kills: true});
+    }
+    if (kills) {
+      updatePlayer({type: `${ballColor}Kills`, kills: !kills});
+    }
+  };
+
   // RENDER
   return (
     <>
@@ -31,7 +43,7 @@ const HeaderButtons = ({
         <IconButton name="speaker-notes" size={25} color="green" />
       </Pressable>
       <Pressable
-        onPress={() => updatePlayer({type: `${ballColor}Kills`, kills: !kills})}
+        onPress={_handleKills}
         containerStyles={[
           styles.kills,
           {backgroundColor: kills ? '#ed5740' : '#aaa'},
@@ -39,7 +51,6 @@ const HeaderButtons = ({
         <Text fontFamily="Rubik-Medium" color="#fff">
           Kills
         </Text>
-        {/* <Icon name="plus" size={17} color="#fff" /> */}
       </Pressable>
     </>
   );

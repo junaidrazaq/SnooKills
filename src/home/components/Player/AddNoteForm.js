@@ -16,6 +16,7 @@ const AddNoteForm = ({
   updatePlayer,
   lives,
   gainedLife,
+  onKills,
 }) => {
   // State
   const [whoPotted, setWhoPotted] = React.useState('');
@@ -35,8 +36,8 @@ const AddNoteForm = ({
     await updatePlayer({
       type: `${ballColor}Notes`,
       notes: [
-        `${gainedLife ? lives - 1 : lives + 1} - ${lives}`,
-        whoPotted,
+        onKills ? 'Kills' : `${gainedLife ? lives - 1 : lives + 1} - ${lives}`,
+        onKills ? 'Red' : whoPotted,
         wherePotted,
         notes,
       ],
@@ -57,17 +58,19 @@ const AddNoteForm = ({
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        {/* Who */}
-        <TextInput
-          ref={inputRef}
-          placeholder={placeHolderTextWho}
-          style={styles.textInput}
-          onChangeText={text => setWhoPotted(text)}
-          value={whoPotted}
-        />
+        {!onKills && (
+          <TextInput // Who
+            ref={inputRef}
+            placeholder={placeHolderTextWho}
+            style={styles.textInput}
+            onChangeText={text => setWhoPotted(text)}
+            value={whoPotted}
+          />
+        )}
 
         {/* Where? */}
         <TextInput
+          ref={onKills ? inputRef : null}
           placeholder={placeHolderTextWhere}
           style={styles.textInput}
           onChangeText={text => setWherePotted(text)}
