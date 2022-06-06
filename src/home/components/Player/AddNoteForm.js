@@ -44,20 +44,6 @@ const AddNoteForm = ({
     await onClose();
   };
 
-  // FN: On close
-  const _handleClose = async () => {
-    await updatePlayer({
-      type: `${ballColor}Notes`,
-      notes: [
-        `${gainedLife ? lives - 1 : lives + 1} - ${lives}`,
-        '--',
-        '--',
-        '--',
-      ],
-    });
-    await onClose();
-  };
-
   // Placeholder texts
   const placeHolderTextWho = gainedLife
     ? `What did ${name ? name : ballColor} pot? (3 reds/white)`
@@ -105,7 +91,7 @@ const AddNoteForm = ({
         </Pressable>
 
         {/* Close */}
-        <Pressable onPress={_handleClose} containerStyles={styles.close}>
+        <Pressable onPress={() => onClose()} containerStyles={styles.close}>
           <Icon name="close-circle" size={22} color="red" />
         </Pressable>
       </View>
