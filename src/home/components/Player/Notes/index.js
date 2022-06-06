@@ -11,7 +11,7 @@ import {updatePlayer as updatePlayerAction} from '../../../redux/actions';
 
 const Notes = ({name, ballColor, onClose, notes, updatePlayer}) => {
   // STATE
-  const tableHead = ['Lives', 'Potted', 'Pocket', 'Notes'];
+  const tableHead = ['Lives', 'Potted (By)', 'Pocket', 'Notes'];
 
   // FN: On delete
   const _handleDelete = async index => {

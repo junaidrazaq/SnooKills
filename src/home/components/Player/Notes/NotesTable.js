@@ -27,9 +27,9 @@ const NotesTable = ({tableHead, tableData, onDel}) => {
       <Table children>
         <Row
           data={tableHead}
-          widthArr={[50, 50, 50, 130]}
+          widthArr={[40, 70, 55, 120]}
           style={styles.head}
-          textStyle={[styles.text, {fontFamily: 'Rubik-Medium', fontSize: 11}]}
+          textStyle={[styles.text, {fontFamily: 'Rubik-Medium'}]}
         />
         {tableData.map((rowData, index) => (
           <TableWrapper key={index} style={styles.row}>
@@ -37,7 +37,7 @@ const NotesTable = ({tableHead, tableData, onDel}) => {
               cellIndex === 3 ? ( // Last cell
                 <View key={cellIndex} style={styles.lastRowContainer}>
                   <Cell
-                    width={126}
+                    width={116}
                     key={cellIndex}
                     data={cellData}
                     textStyle={styles.text}
@@ -50,7 +50,7 @@ const NotesTable = ({tableHead, tableData, onDel}) => {
                 </View>
               ) : (
                 <Cell // Other cells
-                  width={50}
+                  width={cellIndex === 0 ? 40 : cellIndex === 1 ? 70 : 55}
                   key={cellIndex}
                   data={cellData}
                   style={{borderWidth: 2, borderColor: '#c8e1ff'}}
@@ -68,7 +68,7 @@ const NotesTable = ({tableHead, tableData, onDel}) => {
 // STYLES
 const styles = StyleSheet.create({
   tableContainer: {padding: 16, paddingTop: 15, width: '100%'},
-  text: {margin: 6, fontFamily: 'Rubik-Light', fontSize: 11},
+  text: {margin: 6, fontFamily: 'Rubik-Light', fontSize: 10},
   row: {flexDirection: 'row'},
   delete: {position: 'absolute', right: -24, top: 4},
   lastRowContainer: {borderWidth: 2, borderTopWidth: 0, borderColor: '#c8e1ff'},
