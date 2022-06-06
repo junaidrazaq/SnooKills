@@ -14,6 +14,10 @@ export default function reducer(state = INITIAL_STATE, action) {
 
   switch (type) {
     case constants.UPDATE_PLAYER.SUCCESS:
+      console.log('payload', payload);
+      // const newArray = state.yellow.notes.splice(payload.index, 1);
+      // console.log('notes', newArray);
+      console.log('notes.length', state.yellow.notes.length);
       return {
         ...state,
 
@@ -38,6 +42,12 @@ export default function reducer(state = INITIAL_STATE, action) {
               ? state.yellow.notes.length === 0
                 ? [payload.notes]
                 : [...state.yellow.notes, payload.notes]
+              : payload.type === 'yellowNotesUpdate'
+              ? state.yellow.notes.length === 1
+                ? []
+                : state.yellow.notes.filter(
+                    (arr, index) => payload.index !== index,
+                  )
               : state.yellow.notes,
         },
 
@@ -62,6 +72,12 @@ export default function reducer(state = INITIAL_STATE, action) {
               ? state.green.notes.length === 0
                 ? [payload.notes]
                 : [...state.green.notes, payload.notes]
+              : payload.type === 'greenNotesUpdate'
+              ? state.green.notes.length === 1
+                ? []
+                : state.green.notes.filter(
+                    (arr, index) => payload.index !== index,
+                  )
               : state.green.notes,
         },
 
@@ -84,6 +100,12 @@ export default function reducer(state = INITIAL_STATE, action) {
           notes:
             payload.type === 'brownNotes' // ** Update Notes ** \\
               ? [...state.brown.notes, payload.notes]
+              : payload.type === 'brownNotesUpdate'
+              ? state.brown.notes.length === 1
+                ? []
+                : state.brown.notes.filter(
+                    (arr, index) => payload.index !== index,
+                  )
               : state.brown.notes,
         },
 
@@ -106,6 +128,12 @@ export default function reducer(state = INITIAL_STATE, action) {
           notes:
             payload.type === 'blueNotes' // ** Update Notes ** \\
               ? [...state.blue.notes, payload.notes]
+              : payload.type === 'blueNotesUpdate'
+              ? state.blue.notes.length === 1
+                ? []
+                : state.blue.notes.filter(
+                    (arr, index) => payload.index !== index,
+                  )
               : state.blue.notes,
         },
 
@@ -129,6 +157,12 @@ export default function reducer(state = INITIAL_STATE, action) {
           notes:
             payload.type === 'pinkNotes' // ** Update Notes ** \\
               ? [...state.pink.notes, payload.notes]
+              : payload.type === 'pinkNotesUpdate'
+              ? state.pink.notes.length === 1
+                ? []
+                : state.pink.notes.filter(
+                    (arr, index) => payload.index !== index,
+                  )
               : state.pink.notes,
         },
 
@@ -151,6 +185,12 @@ export default function reducer(state = INITIAL_STATE, action) {
           notes:
             payload.type === 'blackNotes' // ** Update Notes ** \\
               ? [...state.black.notes, payload.notes]
+              : payload.type === 'blackNotesUpdate'
+              ? state.black.notes.length === 1
+                ? []
+                : state.black.notes.filter(
+                    (arr, index) => payload.index !== index,
+                  )
               : state.black.notes,
         },
       };

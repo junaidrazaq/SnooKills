@@ -1,25 +1,48 @@
 import React from 'react';
-import Heading from './Heading';
-import NotesTable from './NotesTable';
+import {Alert} from 'react-native';
 
-const Notes = ({name, ballColor, onClose, notes}) => {
-  console.log('notes', notes);
+// COMPONENTS
+import NotesTable from './NotesTable';
+import Heading from './Heading';
+
+// REDUX:
+import {connect} from 'react-redux';
+import {updatePlayer as updatePlayerAction} from '../../../redux/actions';
+
+const Notes = ({name, ballColor, onClose, notes, updatePlayer}) => {
   // STATE
   const tableHead = ['Lives', 'Potted', 'Pocket', 'Notes'];
-  const [tableData, setTableData] = React.useState([
-    ['-', '2', '3', 'This guys a retard he potted himself'],
-    ['-', 'b', 'c', 'd'],
-    ['+', '2', '3', '456\n789'],
-    ['*', 'b', 'c', 'd'],
-  ]);
+
+  // FN: On delete
+  const _handleDelete = async index => {
+    Alert.alert('Delete Note', `Are you sure you want to delete this note?`, [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Delete',
+        onPress: async () => {
+          await updatePlayer({type: `${ballColor}NotesUpdate`, index: index});
+        },
+      },
+    ]);
+  };
 
   // RENDER
   return (
     <>
       <Heading name={name} ballColor={ballColor} onClose={onClose} />
-      <NotesTable tableHead={tableHead} tableData={notes} />
+      <NotesTable
+        tableHead={tableHead}
+        tableData={notes}
+        onDel={_handleDelete}
+      />
     </>
   );
 };
 
-export default Notes;
+// ACTIONS
+const mapDispatchToProps = {updatePlayer: updatePlayerAction};
+
+export default connect(null, mapDispatchToProps)(Notes);
