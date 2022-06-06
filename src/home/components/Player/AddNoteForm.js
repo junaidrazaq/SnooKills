@@ -4,10 +4,19 @@ import {StyleSheet, TextInput} from 'react-native';
 import {shadowAround} from '../../../_Shadow';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconButton from 'react-native-vector-icons/AntDesign';
+
+// REDUX
 import {connect} from 'react-redux';
 import {updatePlayer as updatePlayerAction} from '../../redux/actions';
 
-const AddNoteForm = ({name, ballColor, onClose, updatePlayer, lives}) => {
+const AddNoteForm = ({
+  name,
+  ballColor,
+  onClose,
+  updatePlayer,
+  lives,
+  gainedLife,
+}) => {
   // State
   const [whoPotted, setWhoPotted] = React.useState('');
   const [wherePotted, setWherePotted] = React.useState('');
@@ -25,7 +34,12 @@ const AddNoteForm = ({name, ballColor, onClose, updatePlayer, lives}) => {
   const _handleConfirm = async () => {
     await updatePlayer({
       type: `${ballColor}Notes`,
-      notes: [`${lives - 1} - ${lives}`, whoPotted, wherePotted, notes],
+      notes: [
+        `${gainedLife ? lives - 1 : lives + 1} - ${lives}`,
+        whoPotted,
+        wherePotted,
+        notes,
+      ],
     });
     await onClose();
   };
@@ -34,10 +48,23 @@ const AddNoteForm = ({name, ballColor, onClose, updatePlayer, lives}) => {
   const _handleClose = async () => {
     await updatePlayer({
       type: `${ballColor}Notes`,
-      notes: [`${lives - 1} - ${lives}`, '--', '--', '--'],
+      notes: [
+        `${gainedLife ? lives - 1 : lives + 1} - ${lives}`,
+        '--',
+        '--',
+        '--',
+      ],
     });
     await onClose();
   };
+
+  const placeHolderTextWho = gainedLife
+    ? `What did ${name ? name : ballColor} pot? (3 reds/white)`
+    : 'Potted by who?';
+
+  const placeHolderTextWhere = gainedLife
+    ? `Where did ${name ? name : ballColor} pot? (3 reds/white)`
+    : 'Potted where?';
 
   // RENDER
   return (
@@ -46,9 +73,7 @@ const AddNoteForm = ({name, ballColor, onClose, updatePlayer, lives}) => {
         {/* Who */}
         <TextInput
           ref={inputRef}
-          placeholder={`What did ${
-            name ? name : ballColor
-          } pot? (3 reds/white)`}
+          placeholder={placeHolderTextWho}
           style={styles.textInput}
           onChangeText={text => setWhoPotted(text)}
           value={whoPotted}
@@ -56,7 +81,7 @@ const AddNoteForm = ({name, ballColor, onClose, updatePlayer, lives}) => {
 
         {/* Where? */}
         <TextInput
-          placeholder={`Where did ${name ? name : ballColor} pot?`}
+          placeholder={placeHolderTextWhere}
           style={styles.textInput}
           onChangeText={text => setWherePotted(text)}
           value={wherePotted}

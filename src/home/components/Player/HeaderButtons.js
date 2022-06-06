@@ -31,7 +31,7 @@ const HeaderButtons = ({
         <IconButton name="speaker-notes" size={25} color="green" />
       </Pressable>
       <Pressable
-        onPress={() => updatePlayer({type: `${ballColor}Kills`})}
+        onPress={() => updatePlayer({type: `${ballColor}Kills`, kills: !kills})}
         containerStyles={[
           styles.kills,
           {backgroundColor: kills ? '#ed5740' : '#aaa'},

@@ -27,7 +27,7 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.yellow.lives,
           kills:
             payload.type === 'yellowKills' // ** Update Kills ** \\
-              ? !state.yellow.kills
+              ? payload.kills
               : state.yellow.kills,
           name:
             payload.type === 'yellowName' // ** Update Name ** \\
@@ -51,7 +51,7 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.green.lives,
           kills:
             payload.type === 'greenKills' // ** Update Kills ** \\
-              ? !state.green.kills
+              ? payload.kills
               : state.green.kills,
           name:
             payload.type === 'greenName' // ** Update Name ** \\
@@ -75,7 +75,7 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.brown.lives,
           kills:
             payload.type === 'brownKills' // ** Update Kills ** \\
-              ? !state.brown.kills
+              ? payload.kills
               : state.brown.kills,
           name:
             payload.type === 'brownName' // ** Update Name ** \\
@@ -97,7 +97,7 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.blue.lives,
           kills:
             payload.type === 'blueKills' // ** Update Kills ** \\
-              ? !state.blue.kills
+              ? payload.kills
               : state.blue.kills,
           name:
             payload.type === 'blueName' // ** Update Name ** \\
@@ -119,7 +119,7 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.pink.lives,
           kills:
             payload.type === 'pinkKills' // ** Update Kills ** \\
-              ? !state.pink.kills
+              ? payload.kills
               : state.pink.kills,
           name:
             payload.type === 'pinkName' // ** Update Name ** \\
@@ -142,7 +142,7 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.black.lives,
           kills:
             payload.type === 'blackKills' // ** Update Kills ** \\
-              ? !state.black.kills
+              ? payload.kills
               : state.black.kills,
           name:
             payload.type === 'blackName' // ** Update Name ** \\

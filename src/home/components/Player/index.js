@@ -27,7 +27,8 @@ const Player = ({
 }) => {
   // State
   const [isNotesVisible, setIsNotesVisible] = React.useState(false);
-  const [addNote, setAddNote] = React.useState(false);
+  const [gainedLifeNote, setGainedLifeNote] = React.useState(false);
+  const [lostLifeNote, setLostLifeNote] = React.useState(false);
   const noLives = lives === 0 ? true : false;
 
   // Styles
@@ -44,16 +45,19 @@ const Player = ({
   const _onAdd = useCallback(() => {
     if (lives < 5) {
       updatePlayer({type: `${ballColor}LivesAdd`});
-      setAddNote(true);
+      setGainedLifeNote(true);
     }
     lives >= 5 && alert('implement_shake_animation');
   }, [ballColor, lives]);
 
   // FN: Remove one life
   const _onMinus = useCallback(() => {
-    lives <= 0
-      ? alert('implement_shake_animation')
-      : updatePlayer({type: `${ballColor}LivesMinus`});
+    if (lives > 0) {
+      updatePlayer({type: `${ballColor}LivesMinus`});
+      updatePlayer({type: `${ballColor}Kills`, kills: false});
+      setLostLifeNote(true);
+    }
+    lives <= 0 && alert('implement_shake_animation');
   }, [ballColor, lives]);
 
   // FN: Show/Hide notes
@@ -96,12 +100,21 @@ const Player = ({
         onClose={_onClose}
       />
 
-      {addNote && (
+      {gainedLifeNote && (
         <AddNoteForm
           name={name}
           ballColor={ballColor}
           lives={lives}
-          onClose={() => setAddNote(false)}
+          onClose={() => setGainedLifeNote(false)}
+          gainedLife
+        />
+      )}
+      {lostLifeNote && (
+        <AddNoteForm
+          name={name}
+          ballColor={ballColor}
+          lives={lives}
+          onClose={() => setLostLifeNote(false)}
         />
       )}
     </>
