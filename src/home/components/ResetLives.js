@@ -33,7 +33,7 @@ const ResetLives = ({resetLives}) => {
       onPress={() => _onPress()}
       containerStyles={[styles.container, {bottom: insets.bottom + 20}]}>
       <Text color="#fff" fontFamily="Rubik-Bold">
-        Reset Lives
+        Reset Game
       </Text>
     </Pressable>
   );
