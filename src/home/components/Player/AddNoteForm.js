@@ -30,7 +30,7 @@ const AddNoteForm = ({
     }, 100);
   }, []);
 
-  // On confirm
+  // FN: On confirm
   const _handleConfirm = async () => {
     await updatePlayer({
       type: `${ballColor}Notes`,
@@ -44,7 +44,7 @@ const AddNoteForm = ({
     await onClose();
   };
 
-  // On close
+  // FN: On close
   const _handleClose = async () => {
     await updatePlayer({
       type: `${ballColor}Notes`,
@@ -58,6 +58,7 @@ const AddNoteForm = ({
     await onClose();
   };
 
+  // Placeholder texts
   const placeHolderTextWho = gainedLife
     ? `What did ${name ? name : ballColor} pot? (3 reds/white)`
     : 'Potted by who?';
