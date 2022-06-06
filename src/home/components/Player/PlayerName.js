@@ -49,7 +49,9 @@ const PlayerName = ({name, updatePlayer, ballColor}) => {
   // Component: Name Button
   const NameButton = () => {
     return (
-      <Pressable onPress={_handleOpenModal}>
+      <Pressable
+        onPress={_handleOpenModal}
+        containerStyles={styles.nameContainer}>
         <Text numberOfLines={1} fontFamily="Rubik-Medium" fontSize={12}>
           {name ? name : 'Enter Name'}
         </Text>
@@ -60,9 +62,7 @@ const PlayerName = ({name, updatePlayer, ballColor}) => {
   // RENDER
   return (
     <>
-      <View style={styles.container}>
-        <NameButton />
-      </View>
+      <NameButton />
       {modal && ( // Modal
         <View style={styles.modalContainer}>
           <Buttons
@@ -92,7 +92,7 @@ const PlayerName = ({name, updatePlayer, ballColor}) => {
 
 // STYLES
 const styles = StyleSheet.create({
-  container: {
+  nameContainer: {
     marginBottom: 6,
     marginTop: 4,
     backgroundColor: '#fff',
