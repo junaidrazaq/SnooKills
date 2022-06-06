@@ -4,8 +4,10 @@ import {StyleSheet, TextInput} from 'react-native';
 import {shadowAround} from '../../../_Shadow';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconButton from 'react-native-vector-icons/AntDesign';
+import {connect} from 'react-redux';
+import {updatePlayer as updatePlayerAction} from '../../redux/actions';
 
-const AddNoteForm = ({name, ballColor, onClose}) => {
+const AddNoteForm = ({name, ballColor, onClose, updatePlayer, lives}) => {
   // State
   const [whoPotted, setWhoPotted] = React.useState('');
   const [wherePotted, setWherePotted] = React.useState('');
@@ -19,8 +21,22 @@ const AddNoteForm = ({name, ballColor, onClose}) => {
     }, 100);
   }, []);
 
-  const _handleConfirm = () => {
-    console.log('test');
+  // On confirm
+  const _handleConfirm = async () => {
+    await updatePlayer({
+      type: `${ballColor}Notes`,
+      notes: [`${lives - 1} - ${lives}`, whoPotted, wherePotted, notes],
+    });
+    await onClose();
+  };
+
+  // On close
+  const _handleClose = async () => {
+    await updatePlayer({
+      type: `${ballColor}Notes`,
+      notes: [`${lives - 1} - ${lives}`, '--', '--', '--'],
+    });
+    await onClose();
   };
 
   // RENDER
@@ -63,7 +79,7 @@ const AddNoteForm = ({name, ballColor, onClose}) => {
         </Pressable>
 
         {/* Close */}
-        <Pressable onPress={() => onClose()} containerStyles={styles.close}>
+        <Pressable onPress={_handleClose} containerStyles={styles.close}>
           <Icon name="close-circle" size={22} color="red" />
         </Pressable>
       </View>
@@ -110,4 +126,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddNoteForm;
+// ACTIONS
+const mapDispatchToProps = {updatePlayer: updatePlayerAction};
+
+export default connect(null, mapDispatchToProps)(AddNoteForm);

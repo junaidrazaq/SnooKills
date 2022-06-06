@@ -99,6 +99,7 @@ const Player = ({
         <AddNoteForm
           name={name}
           ballColor={ballColor}
+          lives={lives}
           onClose={() => setAddNote(false)}
         />
       )}

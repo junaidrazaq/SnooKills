@@ -1,19 +1,19 @@
 import * as constants from './constants';
 
 export const INITIAL_STATE = {
-  yellow: {lives: 3, kills: false, name: null, notes: null},
-  green: {lives: 3, kills: false, name: null, notes: null},
-  brown: {lives: 3, kills: false, name: null, notes: null},
-  blue: {lives: 3, kills: false, name: null, notes: null},
-  pink: {lives: 3, kills: false, name: null, notes: null},
-  black: {lives: 3, kills: false, name: null, notes: null},
+  yellow: {lives: 3, kills: false, name: null, notes: []},
+  green: {lives: 3, kills: false, name: null, notes: []},
+  brown: {lives: 3, kills: false, name: null, notes: []},
+  blue: {lives: 3, kills: false, name: null, notes: []},
+  pink: {lives: 3, kills: false, name: null, notes: []},
+  black: {lives: 3, kills: false, name: null, notes: []},
 };
 
 export default function reducer(state = INITIAL_STATE, action) {
   const {type, payload} = action;
 
   switch (type) {
-    case constants.UPDATE_PLAYER.SUCCESS: // ** Update Player State ** \\
+    case constants.UPDATE_PLAYER.SUCCESS:
       return {
         ...state,
 
@@ -35,7 +35,9 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.yellow.name,
           notes:
             payload.type === 'yellowNotes' // ** Update Notes ** \\
-              ? payload.notes
+              ? state.yellow.notes.length === 0
+                ? [payload.notes]
+                : [...state.yellow.notes, payload.notes]
               : state.yellow.notes,
         },
 
@@ -57,7 +59,9 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.green.name,
           notes:
             payload.type === 'greenNotes' // ** Update Notes ** \\
-              ? payload.notes
+              ? state.green.notes.length === 0
+                ? [payload.notes]
+                : [...state.green.notes, payload.notes]
               : state.green.notes,
         },
 
@@ -79,7 +83,7 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.brown.name,
           notes:
             payload.type === 'brownNotes' // ** Update Notes ** \\
-              ? payload.notes
+              ? [...state.brown.notes, payload.notes]
               : state.brown.notes,
         },
 
@@ -101,7 +105,7 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.blue.name,
           notes:
             payload.type === 'blueNotes' // ** Update Notes ** \\
-              ? payload.notes
+              ? [...state.blue.notes, payload.notes]
               : state.blue.notes,
         },
 
@@ -124,7 +128,7 @@ export default function reducer(state = INITIAL_STATE, action) {
 
           notes:
             payload.type === 'pinkNotes' // ** Update Notes ** \\
-              ? payload.notes
+              ? [...state.pink.notes, payload.notes]
               : state.pink.notes,
         },
 
@@ -146,7 +150,7 @@ export default function reducer(state = INITIAL_STATE, action) {
               : state.black.name,
           notes:
             payload.type === 'blackNotes' // ** Update Notes ** \\
-              ? payload.notes
+              ? [...state.black.notes, payload.notes]
               : state.black.notes,
         },
       };
@@ -154,12 +158,12 @@ export default function reducer(state = INITIAL_STATE, action) {
     case constants.RESET_STATE.SUCCESS: // Reset game
       return {
         ...state,
-        yellow: {lives: 3, kills: false, name: '', notes: null},
-        brown: {lives: 3, kills: false, name: '', notes: null},
-        green: {lives: 3, kills: false, name: '', notes: null},
-        blue: {lives: 3, kills: false, name: '', notes: null},
-        pink: {lives: 3, kills: false, name: '', notes: null},
-        black: {lives: 3, kills: false, name: '', notes: null},
+        yellow: {lives: 3, kills: false, name: '', notes: []},
+        brown: {lives: 3, kills: false, name: '', notes: []},
+        green: {lives: 3, kills: false, name: '', notes: []},
+        blue: {lives: 3, kills: false, name: '', notes: []},
+        pink: {lives: 3, kills: false, name: '', notes: []},
+        black: {lives: 3, kills: false, name: '', notes: []},
       };
 
     default:
