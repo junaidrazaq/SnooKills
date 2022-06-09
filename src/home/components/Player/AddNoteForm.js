@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Pressable, Text, View} from '../../../common';
+import React, {useState} from 'react';
+import {Pressable, Text, View, DropDownPicker} from '../../../common';
 import {StyleSheet, TextInput} from 'react-native';
 import {shadowAround} from '../../../_Shadow';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -20,16 +20,32 @@ const AddNoteForm = ({
 }) => {
   // State
   const [whoPotted, setWhoPotted] = React.useState('');
+  const [pottedByItems, setPottedByItems] = useState([
+    {label: 'Potted by who?', value: ''},
+    {label: 'Yellow', value: 'yellow'},
+    {label: 'Green', value: 'green'},
+    {label: 'Brown', value: 'brown'},
+    {label: 'Blue', value: 'blue'},
+    {label: 'Pink', value: 'pink'},
+    {label: 'Black', value: 'black'},
+  ]);
+  const [whatPotted, setWhatPotted] = React.useState('');
+  const [whatPottedItems, setWhatPottedItems] = useState([
+    {label: 'What potted?', value: ''},
+    {label: 'Three Reds', value: 'threeReds'},
+    {label: 'White', value: 'white'},
+  ]);
   const [wherePotted, setWherePotted] = React.useState('');
+  const [wherePottedItems, setWherePottedItems] = useState([
+    {label: 'Where potted?', value: ''},
+    {label: 'Top Left', value: 'topLeft'},
+    {label: 'Top Right', value: 'topRight'},
+    {label: 'Middle Left', value: 'middleLeft'},
+    {label: 'Middle Right', value: 'middleRight'},
+    {label: 'Bottom Left', value: 'bottomLeft'},
+    {label: 'Bottom Right', value: 'bottomRight'},
+  ]);
   const [notes, setNotes] = React.useState('');
-  const inputRef = React.useRef();
-
-  // On render
-  useEffect(() => {
-    setTimeout(() => {
-      inputRef.current.focus();
-    }, 100);
-  }, []);
 
   // FN: On confirm
   const _handleConfirm = async () => {
@@ -45,52 +61,81 @@ const AddNoteForm = ({
     await onClose();
   };
 
-  // Placeholder texts
-  const placeHolderTextWho = gainedLife
-    ? `What did ${name ? name : ballColor} pot? (3 reds/white)`
-    : 'Potted by who?';
-
-  const placeHolderTextWhere = gainedLife
-    ? `Where did ${name ? name : ballColor} pot? (3 reds/white)`
-    : 'Potted where?';
+  const header = `How did ${name || ballColor}${
+    gainedLife ? ' get life?' : onKills ? ' get on kills?' : ' lose life?'
+  }`;
 
   // RENDER
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        {!onKills && (
-          <TextInput // Who
-            ref={inputRef}
-            placeholder={placeHolderTextWho}
-            style={styles.textInput}
-            onChangeText={text => setWhoPotted(text)}
-            value={whoPotted}
-          />
+        <View style={{paddingBottom: 15, paddingLeft: 10}}>
+          <Text
+            style={{textTransform: 'capitalize'}}
+            fontFamily="Rubik-Bold"
+            color={ballColor == 'yellow' ? '#777' : ballColor}
+            fontSize={18}>
+            {header}
+          </Text>
+        </View>
+
+        {onKills && (
+          <View alignItems="center">
+            <DropDownPicker // **|| Where potted ||** \\
+              placeholder="Potted where?"
+              containerStyle={{width: '45%', marginTop: 8}}
+              value={wherePotted}
+              setValue={setWherePotted}
+              items={wherePottedItems}
+              setItems={setWherePottedItems}
+            />
+          </View>
         )}
 
-        {/* Where? */}
-        <TextInput
-          ref={onKills ? inputRef : null}
-          placeholder={placeHolderTextWhere}
-          style={styles.textInput}
-          onChangeText={text => setWherePotted(text)}
-          value={wherePotted}
-        />
+        {!onKills && (
+          <View style={{marginTop: 8}} alignItems="center">
+            <DropDownPicker // **|| What potted ||** \\
+              placeholder={gainedLife ? 'Potted what?' : 'Who potted?'}
+              containerStyle={{width: '45%', zIndex: 999}}
+              value={gainedLife ? whatPotted : whoPotted}
+              setValue={gainedLife ? setWhatPotted : setWhoPotted}
+              items={gainedLife ? whatPottedItems : pottedByItems}
+              setItems={gainedLife ? setWhatPottedItems : setPottedByItems}
+            />
+            <DropDownPicker // **|| Where potted ||** \\
+              placeholder="Potted where?"
+              containerStyle={{width: '45%', marginTop: 18}}
+              value={wherePotted}
+              setValue={setWherePotted}
+              items={wherePottedItems}
+              setItems={setWherePottedItems}
+            />
+          </View>
+        )}
 
         {/* Extra Notes */}
-        <TextInput
-          placeholder={`Add any extra notes here`}
-          style={styles.textInput}
-          onChangeText={text => setNotes(text)}
-          value={notes}
-        />
+        <View style={styles.notesContainer}>
+          <Text color="#777" style={[styles.placeholderStyle]}>
+            Extra notes...
+          </Text>
+          <TextInput
+            placeholder={`Extra notes...`}
+            style={styles.textInput}
+            onChangeText={text => setNotes(text)}
+            value={notes}
+          />
+        </View>
 
         {/* Confirm */}
         <Pressable containerStyles={styles.icon} onPress={_handleConfirm}>
-          <Text fontFamily="Rubik-Medium" style={{marginRight: 5}}>
+          <Text
+            fontFamily="Rubik-Medium"
+            style={{marginRight: 5}}
+            color="#fff"
+            fontSize={12}>
             Confirm
           </Text>
-          <IconButton name="checkcircle" size={16} color="green" />
+          <IconButton name="checkcircle" size={13} color="#fff" />
         </Pressable>
 
         {/* Close */}
@@ -127,17 +172,30 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     paddingVertical: 12,
     backgroundColor: 'rgba(0,0,0,0.1)',
+    borderRadius: 5,
   },
   icon: {
     flexDirection: 'row',
-    alignSelf: 'center',
-    marginVertical: 5,
-    backgroundColor: '#fff',
-    ...shadowAround,
+    backgroundColor: 'green',
+    position: 'absolute',
+    bottom: -7,
+    right: -7,
+    padding: 5,
     paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 5,
-    marginTop: 10,
+    borderRadius: 20,
+  },
+  placeholderStyle: {
+    fontFamily: 'Rubik-Bold',
+    fontSize: 10,
+    position: 'absolute',
+    top: -11,
+    left: -3,
+  },
+  notesContainer: {
+    width: '45%',
+    alignSelf: 'center',
+    marginTop: 17,
+    zIndex: -1,
   },
 });
 
