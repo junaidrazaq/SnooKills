@@ -67,7 +67,7 @@ const NotesTable = ({tableHead, tableData, onDel}) => {
 
 // STYLES
 const styles = StyleSheet.create({
-  tableContainer: {padding: 16, paddingTop: 15, width: '100%'},
+  tableContainer: {padding: 16, paddingTop: 15},
   text: {margin: 6, fontFamily: 'Rubik-Light', fontSize: 10, color: '#000'},
   row: {flexDirection: 'row'},
   delete: {position: 'absolute', right: 4, top: 4},
