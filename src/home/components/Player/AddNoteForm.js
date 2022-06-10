@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Pressable, Text, View, DropDownPicker} from '../../../common';
 import {StyleSheet, TextInput} from 'react-native';
-import {shadowAround} from '../../../_Shadow';
+import {shadowAround, shadowDark} from '../../../_Shadow';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconButton from 'react-native-vector-icons/AntDesign';
 
@@ -157,7 +157,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 10,
     borderRadius: 10,
-    ...shadowAround,
+    ...shadowDark,
+    elevation: 20,
   },
   close: {
     position: 'absolute',
@@ -184,6 +185,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 20,
     zIndex: -1,
+    ...shadowAround,
   },
   placeholderStyle: {
     fontFamily: 'Rubik-Bold',
@@ -193,7 +195,7 @@ const styles = StyleSheet.create({
     left: -3,
   },
   notesContainer: {
-    width: '45%',
+    // width: '45%',
     alignSelf: 'center',
     marginTop: 17,
     zIndex: -1,
