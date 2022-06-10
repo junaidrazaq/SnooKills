@@ -22,12 +22,12 @@ const AddNoteForm = ({
   const [whoPotted, setWhoPotted] = React.useState('');
   const [pottedByItems, setPottedByItems] = useState([
     {label: 'Potted by who?', value: ''},
-    {label: 'Yellow', value: 'yellow'},
-    {label: 'Green', value: 'green'},
-    {label: 'Brown', value: 'brown'},
-    {label: 'Blue', value: 'blue'},
-    {label: 'Pink', value: 'pink'},
-    {label: 'Black', value: 'black'},
+    {label: 'Yellow', value: 'Yellow'},
+    {label: 'Green', value: 'Green'},
+    {label: 'Brown', value: 'Brown'},
+    {label: 'Blue', value: 'Blue'},
+    {label: 'Pink', value: 'Pink'},
+    {label: 'Black', value: 'Black'},
   ]);
   const [whatPotted, setWhatPotted] = React.useState('');
   const [whatPottedItems, setWhatPottedItems] = useState([
@@ -38,12 +38,12 @@ const AddNoteForm = ({
   const [wherePotted, setWherePotted] = React.useState('');
   const [wherePottedItems, setWherePottedItems] = useState([
     {label: 'Where potted?', value: ''},
-    {label: 'Top Left', value: 'Top Left'},
-    {label: 'Top Right', value: 'Top Right'},
-    {label: 'Middle Left', value: 'Middle Left'},
-    {label: 'Middle Right', value: 'Middle Right'},
-    {label: 'Bottom Left', value: 'Bottom Left'},
-    {label: 'Bottom Right', value: 'Bottom Right'},
+    {label: 'Top Left', value: 'TL'},
+    {label: 'Top Right', value: 'TR'},
+    {label: 'Middle Left', value: 'ML'},
+    {label: 'Middle Right', value: 'MR'},
+    {label: 'Bottom Left', value: 'BL'},
+    {label: 'Bottom Right', value: 'BR'},
   ]);
   const [notes, setNotes] = React.useState('');
 
