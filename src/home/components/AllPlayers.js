@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from '../../common';
 import Player from './Player';
+import {Dimensions} from 'react-native';
 
 // REDUX
 import {connect} from 'react-redux';
@@ -13,6 +14,8 @@ import {
   getYellowPlayer,
 } from '../redux/selectors';
 
+const {height} = Dimensions.get('screen');
+
 // ** ------
 // ALL_PLAYERS_COMPONENT
 // ------ **
@@ -24,9 +27,9 @@ const AllPlayers = ({
   pinkPlayer,
   blackPlayer,
 }) => {
-  const topPosition = 20;
-  const middlePosition = 250;
-  const bottomPosition = 480;
+  const topPosition = height * 0.03;
+  const middlePosition = height * 0.3;
+  const bottomPosition = height * 0.57;
 
   //   RENDER
   return (
