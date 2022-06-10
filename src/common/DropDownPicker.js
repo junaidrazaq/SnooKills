@@ -1,6 +1,7 @@
 import React from 'react';
 import RNDropDownPicker from 'react-native-dropdown-picker';
 import {StyleSheet, View, Text} from 'react-native';
+import {shadowAround} from '../_Shadow';
 
 const DropDownPicker = ({
   containerStyle,
@@ -19,16 +20,20 @@ const DropDownPicker = ({
 
   // RENDER
   return (
-    <View style={[containerStyle]}>
+    <View style={containerStyle}>
       {/* {value !== '' && ( */}
       <Text style={[styles.placeholderStyle]}>{placeholder}</Text>
       {/* )} */}
       <RNDropDownPicker
-        style={[styles.defaultStyle, style, {minHeight: 40, marginTop: 3}]}
+        listMode="MODAL"
+        style={[styles.defaultStyle, style, {marginTop: 3}]}
         textStyle={[styles.textStyle, textStyle]}
         placeholder={placeholder}
         placeholderStyle={[styles.placeholderStyle, placeholderStyle]}
-        dropDownContainerStyle={[styles.defaultStyle]}
+        dropDownContainerStyle={[
+          styles.defaultStyle,
+          {backgroundColor: 'red', flex: 1},
+        ]}
         value={value}
         setValue={setValue}
         items={items}
@@ -51,7 +56,12 @@ const styles = StyleSheet.create({
     top: -12,
     left: -3,
   },
-  defaultStyle: {borderWidth: 1.5, borderColor: '#ccc', borderRadius: 5},
+  defaultStyle: {
+    borderWidth: 1.5,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    ...shadowAround,
+  },
   textStyle: {fontFamily: 'Rubik-Medium', fontSize: 12, color: '#777'},
 });
 

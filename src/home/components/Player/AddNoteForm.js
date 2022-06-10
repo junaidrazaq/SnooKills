@@ -83,7 +83,7 @@ const AddNoteForm = ({
           <View alignItems="center">
             <DropDownPicker // **|| Where potted ||** \\
               placeholder="Potted where?"
-              containerStyle={{width: '45%', marginTop: 8}}
+              // containerStyle={{width: '45%', marginTop: 8}}
               value={wherePotted}
               setValue={setWherePotted}
               items={wherePottedItems}
@@ -96,7 +96,7 @@ const AddNoteForm = ({
           <View style={{marginTop: 8}} alignItems="center">
             <DropDownPicker // **|| What potted ||** \\
               placeholder={gainedLife ? 'Potted what?' : 'Who potted?'}
-              containerStyle={{width: '45%', zIndex: 999}}
+              containerStyle={{zIndex: 999, elevation: 5}}
               value={gainedLife ? whatPotted : whoPotted}
               setValue={gainedLife ? setWhatPotted : setWhoPotted}
               items={gainedLife ? whatPottedItems : pottedByItems}
@@ -104,7 +104,7 @@ const AddNoteForm = ({
             />
             <DropDownPicker // **|| Where potted ||** \\
               placeholder="Potted where?"
-              containerStyle={{width: '45%', marginTop: 18}}
+              containerStyle={{marginTop: 18, zIndex: 998}}
               value={wherePotted}
               setValue={setWherePotted}
               items={wherePottedItems}
@@ -183,6 +183,7 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingHorizontal: 10,
     borderRadius: 20,
+    zIndex: -1,
   },
   placeholderStyle: {
     fontFamily: 'Rubik-Bold',
