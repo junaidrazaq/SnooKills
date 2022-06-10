@@ -34,7 +34,7 @@ const Player = ({
 
   // Styles
   const position = {top: top, left: left, right: right};
-  const bgColor = {backgroundColor: noLives ? '#aaa' : '#fff'};
+  const bgColor = {backgroundColor: noLives ? '#aaa' : '#f2f2f2'};
   const killsShadow = {
     shadowColor: 'red',
     shadowRadius: 10,
