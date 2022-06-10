@@ -32,18 +32,18 @@ const AddNoteForm = ({
   const [whatPotted, setWhatPotted] = React.useState('');
   const [whatPottedItems, setWhatPottedItems] = useState([
     {label: 'What potted?', value: ''},
-    {label: 'Three Reds', value: 'threeReds'},
-    {label: 'White', value: 'white'},
+    {label: 'Three Reds', value: 'Three Reds'},
+    {label: 'White', value: 'White'},
   ]);
   const [wherePotted, setWherePotted] = React.useState('');
   const [wherePottedItems, setWherePottedItems] = useState([
     {label: 'Where potted?', value: ''},
-    {label: 'Top Left', value: 'topLeft'},
-    {label: 'Top Right', value: 'topRight'},
-    {label: 'Middle Left', value: 'middleLeft'},
-    {label: 'Middle Right', value: 'middleRight'},
-    {label: 'Bottom Left', value: 'bottomLeft'},
-    {label: 'Bottom Right', value: 'bottomRight'},
+    {label: 'Top Left', value: 'Top Left'},
+    {label: 'Top Right', value: 'Top Right'},
+    {label: 'Middle Left', value: 'Middle Left'},
+    {label: 'Middle Right', value: 'Middle Right'},
+    {label: 'Bottom Left', value: 'Bottom Left'},
+    {label: 'Bottom Right', value: 'Bottom Right'},
   ]);
   const [notes, setNotes] = React.useState('');
 
@@ -53,7 +53,7 @@ const AddNoteForm = ({
       type: `${ballColor}Notes`,
       notes: [
         onKills ? 'Kills' : `${gainedLife ? lives - 1 : lives + 1} - ${lives}`,
-        onKills ? 'Red' : whoPotted,
+        onKills ? 'Red' : gainedLife ? whatPotted : whoPotted,
         wherePotted,
         notes,
       ],
