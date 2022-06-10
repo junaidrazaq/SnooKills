@@ -16,7 +16,7 @@ const CustomHeaderWithBack = ({text}) => {
       alignItems="center"
       style={{paddingTop: insets.top + 20}}>
       <Pressable onPress={() => navigation.goBack()}>
-        <Icon name="arrowleft" size={30} />
+        <Icon name="arrowleft" size={30} color="#000" />
       </Pressable>
       <Text style={{paddingLeft: 10}} fontFamily="Rubik-Bold" fontSize={18}>
         {text}
