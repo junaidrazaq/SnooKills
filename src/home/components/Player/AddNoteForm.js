@@ -6,19 +6,22 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconButton from 'react-native-vector-icons/AntDesign';
 
 // REDUX
-import {connect} from 'react-redux';
-import {updatePlayer as updatePlayerAction} from '../../redux/actions';
+import {useDispatch} from 'react-redux';
+import {addNote, toggleKills} from '../../redux/homeSlice';
+
+// REDUX
 
 const AddNoteForm = ({
   name,
   ballColor,
   onClose,
-  updatePlayer,
   lives,
   gainedLife,
-  onKills,
+  onKillsNotes,
 }) => {
   // State
+  const dispatch = useDispatch();
+
   const [whoPotted, setWhoPotted] = React.useState('');
   const [pottedByItems, setPottedByItems] = useState([
     {label: 'Potted by who?', value: ''},
@@ -49,20 +52,27 @@ const AddNoteForm = ({
 
   // FN: On confirm
   const _handleConfirm = async () => {
-    await updatePlayer({
-      type: `${ballColor}Notes`,
-      notes: [
-        onKills ? 'Kills' : `${gainedLife ? lives - 1 : lives + 1} - ${lives}`,
-        onKills ? 'Red' : gainedLife ? whatPotted : whoPotted,
-        wherePotted,
-        notes,
-      ],
-    });
+    if (gainedLife || onKillsNotes) {
+      await dispatch(toggleKills({player: ballColor}));
+    }
+    await dispatch(
+      addNote({
+        player: ballColor,
+        note: [
+          onKillsNotes
+            ? 'Kills'
+            : `${gainedLife ? lives - 1 : lives + 1} - ${lives}`,
+          onKillsNotes ? 'Red' : gainedLife ? whatPotted : whoPotted,
+          wherePotted,
+          notes,
+        ],
+      }),
+    );
     await onClose();
   };
 
   const header = `How did ${name || ballColor}${
-    gainedLife ? ' get life?' : onKills ? ' get on kills?' : ' lose life?'
+    gainedLife ? ' get life?' : onKillsNotes ? ' get on kills?' : ' lose life?'
   }`;
 
   // RENDER
@@ -79,7 +89,7 @@ const AddNoteForm = ({
           </Text>
         </View>
 
-        {onKills && (
+        {onKillsNotes && (
           <View alignItems="center">
             <DropDownPicker // **|| Where potted ||** \\
               placeholder="Potted where?"
@@ -92,7 +102,7 @@ const AddNoteForm = ({
           </View>
         )}
 
-        {!onKills && (
+        {!onKillsNotes && (
           <View style={{marginTop: 8}} alignItems="center">
             <DropDownPicker // **|| What potted ||** \\
               placeholder={gainedLife ? 'Potted what?' : 'Who potted?'}
@@ -202,7 +212,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// ACTIONS
-const mapDispatchToProps = {updatePlayer: updatePlayerAction};
-
-export default connect(null, mapDispatchToProps)(AddNoteForm);
+export default AddNoteForm;

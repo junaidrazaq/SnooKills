@@ -6,18 +6,20 @@ import {TextInput} from 'react-native';
 import IconButton from 'react-native-vector-icons/AntDesign';
 
 // REDUX
-import {connect} from 'react-redux';
-import {updatePlayer as updatePlayerAction} from '../../redux/actions';
+import {useDispatch} from 'react-redux';
+import {changeName} from '../../redux/homeSlice';
 
-const PlayerName = ({name, updatePlayer, ballColor}) => {
+const PlayerName = ({ballColor, name}) => {
   // State
+  const dispatch = useDispatch();
+
   const [modal, setModal] = React.useState(false);
   const [value, setValue] = React.useState(name);
   const inputRef = React.useRef();
 
-  // FN: Update Player Name
+  // // FN: Update Player Name
   const _handleConfirm = () => {
-    updatePlayer({type: `${ballColor}Name`, name: value});
+    dispatch(changeName({player: ballColor, name: value}));
     setModal(false);
     setValue('');
   };
@@ -53,7 +55,7 @@ const PlayerName = ({name, updatePlayer, ballColor}) => {
         onPress={_handleOpenModal}
         containerStyles={styles.nameContainer}>
         <Text numberOfLines={1} fontFamily="Rubik-Medium" fontSize={12}>
-          {name ? name : 'Enter Name'}
+          {name || 'Enter Name'}
         </Text>
       </Pressable>
     );
@@ -118,7 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// ACTIONS
-const mapDispatchToProps = {updatePlayer: updatePlayerAction};
-
-export default connect(null, mapDispatchToProps)(PlayerName);
+export default PlayerName;

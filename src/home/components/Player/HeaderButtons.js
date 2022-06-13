@@ -5,26 +5,26 @@ import {Pressable, Text} from '../../../common';
 import {StyleSheet} from 'react-native';
 
 // REDUX
-import {connect} from 'react-redux';
-import {updatePlayer as updatePlayerAction} from '../../redux/actions';
+import {useDispatch} from 'react-redux';
+import {toggleKills} from '../../redux/homeSlice';
 
 const HeaderButtons = ({
   noLives,
   color,
   ballColor,
   onNotesPress,
-  updatePlayer,
   kills,
   onPress,
 }) => {
+  const dispatch = useDispatch();
+
   // FN: Toggle Kills and add note
   const _handleKills = async () => {
     if (!kills) {
       await onPress();
-      await updatePlayer({type: `${ballColor}Kills`, kills: true});
     }
     if (kills) {
-      updatePlayer({type: `${ballColor}Kills`, kills: !kills});
+      dispatch(toggleKills({player: ballColor}));
     }
   };
 
@@ -77,7 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// ACTIONS
-const mapDispatchToProps = {updatePlayer: updatePlayerAction};
-
-export default connect(null, mapDispatchToProps)(HeaderButtons);
+export default HeaderButtons;

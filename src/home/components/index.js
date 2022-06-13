@@ -23,7 +23,7 @@ const Home = () => {
       ) : (
         <>
           <AllPlayers />
-          <ResetLives />
+          {/* <ResetLives /> */}
         </>
       )}
     </View>

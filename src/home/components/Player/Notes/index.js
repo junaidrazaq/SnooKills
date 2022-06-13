@@ -4,14 +4,15 @@ import {Alert} from 'react-native';
 // COMPONENTS
 import NotesTable from './NotesTable';
 import Heading from './Heading';
+import {useDispatch} from 'react-redux';
+import {removeNote} from '../../../redux/homeSlice';
 
 // REDUX:
-import {connect} from 'react-redux';
-import {updatePlayer as updatePlayerAction} from '../../../redux/actions';
 
 const Notes = ({name, ballColor, onClose, notes, updatePlayer}) => {
   // STATE
   const tableHead = ['Lives', 'Potted (By)', 'Pocket', 'Notes'];
+  const dispatch = useDispatch();
 
   // FN: On delete
   const _handleDelete = async index => {
@@ -23,7 +24,7 @@ const Notes = ({name, ballColor, onClose, notes, updatePlayer}) => {
       {
         text: 'Delete',
         onPress: async () => {
-          await updatePlayer({type: `${ballColor}NotesUpdate`, index: index});
+          await dispatch(removeNote({player: ballColor, index: index}));
         },
       },
     ]);
@@ -42,7 +43,4 @@ const Notes = ({name, ballColor, onClose, notes, updatePlayer}) => {
   );
 };
 
-// ACTIONS
-const mapDispatchToProps = {updatePlayer: updatePlayerAction};
-
-export default connect(null, mapDispatchToProps)(Notes);
+export default Notes;
