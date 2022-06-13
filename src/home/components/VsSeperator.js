@@ -9,7 +9,7 @@ const VsSeperator = ({midPosition}) => {
     <>
       <View style={styles.verticalLine}></View>
       <View style={[styles.container, {top: midPosition + 70}]}>
-        <Text fontFamily="IndieFlower-Regular" fontSize={30} color="#fff">
+        <Text fontFamily="IndieFlower-Regular" fontSize={25} color="#fff">
           VS
         </Text>
       </View>
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#333',
     paddingVertical: 10,
-    paddingHorizontal: 17,
+    paddingHorizontal: 16,
     borderRadius: 80,
     transform: [{rotate: '-15deg'}],
     elevation: 10,
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     top: -52,
     zIndex: -1,
     alignSelf: 'center',
-    // elevation: 10,
   },
 });
 

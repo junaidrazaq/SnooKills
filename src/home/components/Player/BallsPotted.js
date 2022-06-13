@@ -1,7 +1,7 @@
 import React from 'react';
 import {Pressable, Text, View} from '../../../common';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {shadowVeryLight} from '../../../_Shadow';
+import {shadowAround, shadowVeryLight} from '../../../_Shadow';
 import {StyleSheet} from 'react-native';
 
 // REDUX
@@ -40,7 +40,7 @@ const RedsPotted = ({ballType, ballColor}) => {
       alignItems="center"
       style={styles.container}>
       <Pressable onPress={_onRemove}>
-        <Icon name="minus-circle-outline" color="red" size={18} />
+        <Icon name="minus-circle" color="red" size={18} />
       </Pressable>
       <Text
         color={ballType === 'Reds' ? 'red' : '#444'}
@@ -49,7 +49,7 @@ const RedsPotted = ({ballType, ballColor}) => {
         {ballType}: {valToShow}
       </Text>
       <Pressable onPress={_onAdd}>
-        <Icon name="plus-circle-outline" color="green" size={18} />
+        <Icon name="plus-circle" color="green" size={18} />
       </Pressable>
     </View>
   );
