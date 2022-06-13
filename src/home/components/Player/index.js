@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {StyleSheet} from 'react-native';
-import {Pressable, Text, View} from '../../../common';
+import {View} from '../../../common';
 import {shadowAround} from '../../../_Shadow';
 
 // COMPONENTS
@@ -10,24 +10,27 @@ import PlayerName from './PlayerName';
 import PlayerNotes from './PlayerNotes';
 import HeaderButtons from './HeaderButtons';
 import AddNoteForm from './AddNoteForm';
+
+// REDUX
 import {useDispatch, useSelector} from 'react-redux';
 import {
   addLife,
+  changeKills,
   minusLife,
-  selectAllBalls,
   selectBallByColor,
 } from '../../redux/homeSlice';
 
 const Player = ({color, top, left, right, ballColor}) => {
-  // State
-  const ball = useSelector(state => selectBallByColor(state, ballColor));
-  const {lives, notes, kills, name} = ball;
-  const dispatch = useDispatch();
-
+  // Local_State
   const [isNotesVisible, setIsNotesVisible] = React.useState(false);
   const [gainedLifeNote, setGainedLifeNote] = React.useState(false);
   const [lostLifeNote, setLostLifeNote] = React.useState(false);
   const [onKillsNotes, setShowKillsNotes] = React.useState(false);
+
+  // Redux_State
+  const ball = useSelector(state => selectBallByColor(state, ballColor));
+  const {lives, notes, kills, name} = ball;
+  const dispatch = useDispatch();
   const noLives = lives === 0 ? true : false;
 
   // Styles
@@ -44,6 +47,7 @@ const Player = ({color, top, left, right, ballColor}) => {
   const _onAdd = useCallback(() => {
     if (lives < 5) {
       dispatch(addLife({player: ballColor}));
+      dispatch(changeKills({player: ballColor, val: true}));
       setGainedLifeNote(true);
     }
     lives >= 5 && alert('implement_shake_animation');
@@ -53,6 +57,7 @@ const Player = ({color, top, left, right, ballColor}) => {
   const _onMinus = useCallback(() => {
     if (lives > 0) {
       dispatch(minusLife({player: ballColor}));
+      dispatch(changeKills({player: ballColor, val: false}));
       setLostLifeNote(true);
     }
     lives <= 0 && alert('implement_shake_animation');
@@ -62,7 +67,6 @@ const Player = ({color, top, left, right, ballColor}) => {
   const _onNotes = useCallback(() => {
     setIsNotesVisible(prev => !prev);
   }, [isNotesVisible]);
-  console.count('Player');
 
   // FN: Close notes
   const _onClose = useCallback(() => {
@@ -92,7 +96,7 @@ const Player = ({color, top, left, right, ballColor}) => {
         <AddRemoveBtns _onAdd={_onAdd} _onMinus={_onMinus} />
       </View>
 
-      <PlayerNotes
+      <PlayerNotes // Player Notes Modal
         name={name}
         ballColor={ballColor}
         isNotesVisible={isNotesVisible}
@@ -100,17 +104,18 @@ const Player = ({color, top, left, right, ballColor}) => {
         onClose={_onClose}
       />
 
-      {gainedLifeNote && (
+      {gainedLifeNote && ( // Gained Life Notes \\
         <AddNoteForm
           name={name}
           ballColor={ballColor}
           lives={lives}
           onClose={() => setGainedLifeNote(false)}
+          kills={kills}
           gainedLife
         />
       )}
 
-      {onKillsNotes && (
+      {onKillsNotes && ( // Kills Notes \\
         <AddNoteForm
           name={name}
           ballColor={ballColor}
@@ -120,7 +125,7 @@ const Player = ({color, top, left, right, ballColor}) => {
         />
       )}
 
-      {lostLifeNote && (
+      {lostLifeNote && ( // Lost Life Notes \\
         <AddNoteForm
           name={name}
           ballColor={ballColor}

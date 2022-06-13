@@ -9,7 +9,7 @@ import {removeNote} from '../../../redux/homeSlice';
 
 // REDUX:
 
-const Notes = ({name, ballColor, onClose, notes, updatePlayer}) => {
+const Notes = ({name, ballColor, onClose, notes}) => {
   // STATE
   const tableHead = ['Lives', 'Potted (By)', 'Pocket', 'Notes'];
   const dispatch = useDispatch();

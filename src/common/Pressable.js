@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {ActivityIndicator, TouchableOpacity} from 'react-native';
 import {Text} from '.';
 import {shadowLight} from '../_Shadow';
 
@@ -11,6 +11,8 @@ const CustomPressable = ({
   onPress,
   children,
   button,
+  loading,
+  loadingColor,
   ...props
 }) => {
   // console.log('pressableRendered');
@@ -32,11 +34,14 @@ const CustomPressable = ({
         bgColor ? {backgroundColor: bgColor} : null,
         containerStyles,
       ]}>
-      {title && (
+      {loading ? (
+        <ActivityIndicator color={loadingColor || '#fff'} />
+      ) : title ? (
         <Text fontFamily="Rubik-Medium" color={textColor ? textColor : '#fff'}>
           {title}
         </Text>
-      )}
+      ) : null}
+
       {children}
     </TouchableOpacity>
   );
