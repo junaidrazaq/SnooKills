@@ -34,9 +34,13 @@ const RedsPotted = ({ballType, ballColor}) => {
   // ------ || ------ \\
   // RENDER || RENDER \\
   return (
-    <View horizontal justifyContent="space-around" style={styles.container}>
+    <View
+      horizontal
+      justifyContent="space-around"
+      alignItems="center"
+      style={styles.container}>
       <Pressable onPress={_onRemove}>
-        <Icon name="minus-circle-outline" size={14} />
+        <Icon name="minus-circle-outline" color="red" size={18} />
       </Pressable>
       <Text
         color={ballType === 'Reds' ? 'red' : '#444'}
@@ -45,7 +49,7 @@ const RedsPotted = ({ballType, ballColor}) => {
         {ballType}: {valToShow}
       </Text>
       <Pressable onPress={_onAdd}>
-        <Icon name="plus-circle-outline" size={14} />
+        <Icon name="plus-circle-outline" color="green" size={18} />
       </Pressable>
     </View>
   );
