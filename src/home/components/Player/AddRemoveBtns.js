@@ -21,4 +21,4 @@ const AddRemoveBtns = ({_onAdd, _onMinus, noLives, lives}) => {
   );
 };
 
-export default AddRemoveBtns;
+export default React.memo(AddRemoveBtns);

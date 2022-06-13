@@ -120,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PlayerName;
+export default React.memo(PlayerName);
