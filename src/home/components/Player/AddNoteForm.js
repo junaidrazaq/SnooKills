@@ -18,6 +18,7 @@ const AddNoteForm = ({
   lives,
   gainedLife,
   onKillsNotes,
+  kills,
 }) => {
   // State
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ const AddNoteForm = ({
 
   // FN: On confirm
   const _handleConfirm = async () => {
-    if (gainedLife || onKillsNotes) {
+    if (onKillsNotes) {
       await dispatch(toggleKills({player: ballColor}));
     }
     await dispatch(

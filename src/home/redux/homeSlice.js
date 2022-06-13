@@ -16,7 +16,6 @@ export const homeSlice = createSlice({
     // ** Add Life ** \\
     addLife: {
       reducer: (state, action) => {
-        console.log('state', state[action.payload.player]);
         state[action.payload.player].lives += 1;
       },
     },
@@ -53,10 +52,21 @@ export const homeSlice = createSlice({
     // ** Toggle Kills ** \\
     toggleKills: {
       reducer: (state, action) => {
-        console.log('action', action);
         state[action.payload.player].kills =
           !state[action.payload.player].kills;
       },
+    },
+
+    // ** Change Kills ** \\
+    changeKills: {
+      reducer: (state, action) => {
+        state[action.payload.player].kills = action.payload.val;
+      },
+    },
+
+    // ** Reset Lives ** \\
+    resetGame: {
+      reducer: () => initialState,
     },
   },
 });
@@ -67,8 +77,10 @@ export const {
   minusLife,
   changeName,
   toggleKills,
+  changeKills,
   addNote,
   removeNote,
+  resetGame,
 } = homeSlice.actions;
 
 // SELECTORS

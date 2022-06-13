@@ -1,16 +1,27 @@
 import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Pressable, Text} from '../../common';
+import {Pressable} from '../../common';
 import {shadowLight} from '../../_Shadow';
 import {StyleSheet, Alert} from 'react-native';
 
 // REDUX
-import {resetState} from '../redux/actions';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {resetGame} from '../redux/homeSlice';
 
-const ResetLives = ({resetLives}) => {
+const ResetLives = () => {
+  // Local_state
+  const [loading, setLoading] = React.useState(false);
+
+  // Redux_State
   const insets = useSafeAreaInsets();
+  const dispatch = useDispatch();
 
+  // FN: Reset game
+  const _resetGame = async () => {
+    await dispatch(resetGame());
+  };
+
+  // ALERT: Reset game
   const _onPress = () => {
     Alert.alert(
       'Reset Game',
@@ -21,7 +32,7 @@ const ResetLives = ({resetLives}) => {
           onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
-        {text: 'OK', onPress: () => resetLives()},
+        {text: 'OK', onPress: _resetGame},
       ],
       {cancelable: false},
     );
@@ -30,12 +41,11 @@ const ResetLives = ({resetLives}) => {
   // RENDER
   return (
     <Pressable
+      loading={loading}
+      title="Reset Game"
       onPress={() => _onPress()}
-      containerStyles={[styles.container, {bottom: insets.bottom + 20}]}>
-      <Text color="#fff" fontFamily="Rubik-Bold">
-        Reset Game
-      </Text>
-    </Pressable>
+      containerStyles={[styles.container, {bottom: insets.bottom + 20}]}
+    />
   );
 };
 
@@ -51,7 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// ACTIONS
-const mapDispatchToProps = {resetLives: resetState};
-
-export default connect(null, mapDispatchToProps)(ResetLives);
+export default ResetLives;
