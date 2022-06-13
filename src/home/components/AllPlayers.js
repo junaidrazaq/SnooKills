@@ -10,8 +10,8 @@ const {height} = Dimensions.get('screen');
 // ------ **
 const AllPlayers = () => {
   const topPosition = height * 0.03;
-  const midPosition = height * 0.3;
-  const bottomPosition = height * 0.57;
+  const midPosition = height * 0.29;
+  const bottomPosition = height * 0.55;
 
   //   RENDER
   return (

@@ -92,9 +92,12 @@ const Player = ({color, top, left, right, ballColor}) => {
           onPress={() => setShowKillsNotes(true)}
         />
 
-        <PlayerLives noLives={noLives} lives={lives} />
-
-        <AddRemoveBtns _onAdd={_onAdd} _onMinus={_onMinus} />
+        <AddRemoveBtns
+          _onAdd={_onAdd}
+          _onMinus={_onMinus}
+          noLives={noLives}
+          lives={lives}
+        />
 
         <BallsPotted ballType="Colors" />
 
