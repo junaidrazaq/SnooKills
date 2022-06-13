@@ -140,6 +140,7 @@ const Player = ({color, top, left, right, ballColor}) => {
           ballColor={ballColor}
           lives={lives}
           onClose={() => setLostLifeNote(false)}
+          lostLife
         />
       )}
     </>

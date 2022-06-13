@@ -81,6 +81,9 @@ export const homeSlice = createSlice({
     addNote: {
       reducer: (state, action) => {
         state[action.payload.player].notes.push(action.payload.note);
+        if (action.payload.pottedBy) {
+          state[action.payload.pottedBy].colorsPotted += 1;
+        }
       },
     },
 
@@ -106,7 +109,7 @@ export const homeSlice = createSlice({
       },
     },
 
-    // ** Add Reds Potted ** \\
+    // ** Add Balls Potted ** \\
     addPotted: {
       reducer: (state, action) => {
         state[action.payload.player][action.payload.type] += 1;
@@ -117,18 +120,6 @@ export const homeSlice = createSlice({
         state[action.payload.player][action.payload.type] -= 1;
       },
     },
-
-    // // ** Add Colors Potted ** \\
-    // colorPotted: {
-    //   reducer: (state, action) => {
-    //     state[action.payload.player].colorsPotted += 1;
-    //   },
-    // },
-    // removeColorPotted: {
-    //   reducer: (state, action) => {
-    //     state[action.payload.player].colorsPotted -= 1;
-    //   },
-    // },
 
     // ** Reset Lives ** \\
     resetGame: {

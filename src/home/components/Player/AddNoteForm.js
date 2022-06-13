@@ -9,8 +9,6 @@ import IconButton from 'react-native-vector-icons/AntDesign';
 import {useDispatch} from 'react-redux';
 import {addNote, toggleKills} from '../../redux/homeSlice';
 
-// REDUX
-
 const AddNoteForm = ({
   name,
   ballColor,
@@ -18,11 +16,10 @@ const AddNoteForm = ({
   lives,
   gainedLife,
   onKillsNotes,
-  kills,
+  lostLife,
 }) => {
   // State
   const dispatch = useDispatch();
-
   const [whoPotted, setWhoPotted] = React.useState('');
   const [pottedByItems, setPottedByItems] = useState([
     {label: 'Potted by who?', value: ''},
@@ -67,6 +64,7 @@ const AddNoteForm = ({
           wherePotted,
           notes,
         ],
+        pottedBy: lostLife ? whoPotted.toLowerCase() : null,
       }),
     );
     await onClose();
@@ -94,7 +92,6 @@ const AddNoteForm = ({
           <View alignItems="center">
             <DropDownPicker // **|| Where potted ||** \\
               placeholder="Potted where?"
-              // containerStyle={{width: '45%', marginTop: 8}}
               value={wherePotted}
               setValue={setWherePotted}
               items={wherePottedItems}
