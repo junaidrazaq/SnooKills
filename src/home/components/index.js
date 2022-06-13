@@ -1,37 +1,33 @@
-import React from 'react';
-import {Text, View} from '../../common';
-import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import React, {useEffect} from 'react';
+import {HeaderWithBack, LoadingIndicator, View} from '../../common';
+import AllPlayers from './AllPlayers';
+import ResetLives from './ResetLives';
+import {InteractionManager} from 'react-native';
 
-// REDUX
-import {connect} from 'react-redux';
-import {getCount} from '../redux/selectors';
-import {addCount, minusCount} from '../redux/actions';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+const Home = () => {
+  const containerStyle = {flex: 1};
+  const [loading, setLoading] = React.useState(true);
 
-const Home = ({count, addCount, minusCount}) => {
-  const insets = useSafeAreaInsets();
+  useEffect(() => {
+    InteractionManager.runAfterInteractions(() => {
+      setLoading(false);
+    });
+  }, []);
 
   // RENDER
   return (
-    <View style={{top: insets.top + 10}} center>
-      <Text>{count}</Text>
-      <Pressable onPress={() => addCount()}>
-        <Text>Increase</Text>
-      </Pressable>
-      <Pressable onPress={() => minusCount()}>
-        <Text>Decrease</Text>
-      </Pressable>
+    <View style={containerStyle}>
+      <HeaderWithBack text="Home" />
+      {loading ? (
+        <LoadingIndicator containerStyles={{bottom: 20}} />
+      ) : (
+        <>
+          <AllPlayers />
+          {/* <ResetLives /> */}
+        </>
+      )}
     </View>
   );
 };
 
-const mapStateToProps = state => {
-  return {count: getCount(state)};
-};
-
-const mapDispatchToProps = {
-  addCount: addCount,
-  minusCount: minusCount,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

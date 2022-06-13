@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Pressable} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {Text} from '.';
 import {shadowLight} from '../_Shadow';
 
@@ -13,6 +13,7 @@ const CustomPressable = ({
   button,
   ...props
 }) => {
+  // console.log('pressableRendered');
   const buttonStyles = {
     paddingHorizontal: 25,
     paddingVertical: 10,
@@ -23,22 +24,21 @@ const CustomPressable = ({
 
   //   RENDER
   return (
-    <Pressable
+    <TouchableOpacity
+      {...props}
       onPress={onPress}
-      style={({pressed}) => [
+      style={[
         button ? buttonStyles : null,
-        containerStyles,
-        {opacity: pressed ? 0.2 : 1},
         bgColor ? {backgroundColor: bgColor} : null,
-      ]}
-      {...props}>
+        containerStyles,
+      ]}>
       {title && (
         <Text fontFamily="Rubik-Medium" color={textColor ? textColor : '#fff'}>
           {title}
         </Text>
       )}
       {children}
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
@@ -50,4 +50,4 @@ CustomPressable.defaultProps = {
 
 /* Export
 ============================================================================= */
-export default CustomPressable;
+export default React.memo(CustomPressable);

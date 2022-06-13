@@ -1,9 +1,15 @@
 import * as constants from './constants';
 
-export const addCount = () => async dispatch => {
-  dispatch({type: constants.ADD_COUNT.SUCCESS});
+export const updatePlayer = payload => async dispatch => {
+  dispatch({
+    type: constants.UPDATE_PLAYER.SUCCESS,
+    payload,
+  });
 };
 
-export const minusCount = () => async dispatch => {
-  dispatch({type: constants.MINUS_COUNT.SUCCESS});
+export const resetState = () => async dispatch => {
+  dispatch({
+    type: constants.RESET_STATE.SUCCESS,
+  });
+  alert('Game Reset!');
 };

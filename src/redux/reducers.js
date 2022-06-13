@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux';
 
-import CountReducer from '../home/redux/reducer';
+import PlayersReducer from '../home/redux/reducer';
 
 /* ============================================================================
   Combine ALl Reducers
 ============================================================================= */
 const rootReducer = combineReducers({
-  Count: CountReducer,
+  Players: PlayersReducer,
 });
 
 export default rootReducer;
