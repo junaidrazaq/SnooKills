@@ -22,20 +22,22 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     alignSelf: 'center',
-    backgroundColor: '#000',
+    backgroundColor: '#333',
     paddingVertical: 10,
     paddingHorizontal: 17,
     borderRadius: 80,
     transform: [{rotate: '-15deg'}],
+    elevation: 10,
   },
   verticalLine: {
     height: '105%',
-    width: 4,
-    backgroundColor: '#000',
+    width: 7,
+    backgroundColor: '#333',
     position: 'absolute',
     top: -52,
     zIndex: -1,
     alignSelf: 'center',
+    // elevation: 10,
   },
 });
 
