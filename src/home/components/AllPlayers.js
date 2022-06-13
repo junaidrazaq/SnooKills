@@ -1,9 +1,11 @@
 import React from 'react';
-import {View} from '../../common';
+import {Text, View} from '../../common';
 import Player from './Player';
 import {Dimensions} from 'react-native';
+import {shadowAround, shadowDark} from '../../_Shadow';
+import VsSeperator from './VsSeperator';
 
-const {height} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('screen');
 
 // ** ------
 // ALL_PLAYERS_COMPONENT
@@ -22,6 +24,7 @@ const AllPlayers = () => {
       <Player ballColor="blue" color="#2b29c2" top={midPosition} right={20} />
       <Player ballColor="pink" color="#c92080" top={bottomPosition} left={20} />
       <Player ballColor="black" color="#000" top={bottomPosition} right={20} />
+      <VsSeperator midPosition={midPosition} />
     </View>
   );
 };
