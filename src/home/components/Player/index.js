@@ -19,6 +19,7 @@ import {
   minusLife,
   selectBallByColor,
 } from '../../redux/homeSlice';
+import BallsPotted from './BallsPotted';
 
 const Player = ({color, top, left, right, ballColor}) => {
   // Local_State
@@ -94,6 +95,10 @@ const Player = ({color, top, left, right, ballColor}) => {
         <PlayerLives noLives={noLives} lives={lives} />
 
         <AddRemoveBtns _onAdd={_onAdd} _onMinus={_onMinus} />
+
+        <BallsPotted ballType="Colors" />
+
+        <BallsPotted ballType="Reds" />
       </View>
 
       <PlayerNotes // Player Notes Modal
