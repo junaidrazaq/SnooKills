@@ -33,13 +33,15 @@ const Player = ({color, top, left, right, ballColor}) => {
   );
   const dispatch = useDispatch();
   const noLives = lives === 0 ? true : false;
-  const livesColor = kills ? 'red' : lives > 0 ? '#228c22' : '#000';
+  const livesColor = kills ? 'red' : lives > 0 ? '#228c22' : '#aaa';
 
   // Styles
   const position = {top: top, left: left, right: right};
-  const bgColor = {backgroundColor: noLives ? '#aaa' : '#f2f2f2'};
+  const bgColor = {backgroundColor: noLives ? '#aaa' : '#333'};
   const shadowColor = {
     shadowColor: livesColor,
+    borderWidth: 0.5,
+    borderColor: livesColor,
   };
 
   // FN: Add one life
