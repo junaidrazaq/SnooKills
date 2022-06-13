@@ -29,8 +29,9 @@ const Player = ({color, top, left, right, ballColor}) => {
   const [onKillsNotes, setShowKillsNotes] = React.useState(false);
 
   // Redux_State
-  const ball = useSelector(state => selectBallByColor(state, ballColor));
-  const {lives, notes, kills, name} = ball;
+  const {lives, notes, kills, name} = useSelector(state =>
+    selectBallByColor(state, ballColor),
+  );
   const dispatch = useDispatch();
   const noLives = lives === 0 ? true : false;
 
