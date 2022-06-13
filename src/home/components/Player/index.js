@@ -99,9 +99,9 @@ const Player = ({color, top, left, right, ballColor}) => {
           lives={lives}
         />
 
-        <BallsPotted ballType="Colors" />
+        <BallsPotted ballType="Reds" ballColor={ballColor} />
 
-        <BallsPotted ballType="Reds" />
+        <BallsPotted ballType="Colors" ballColor={ballColor} />
       </View>
 
       <PlayerNotes // Player Notes Modal
