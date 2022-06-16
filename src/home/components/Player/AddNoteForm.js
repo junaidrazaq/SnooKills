@@ -182,6 +182,8 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     backgroundColor: 'rgba(0,0,0,0.1)',
     borderRadius: 5,
+    color: 'green',
+    fontWeight: '700',
   },
   icon: {
     flexDirection: 'row',
