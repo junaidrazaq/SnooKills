@@ -33,7 +33,13 @@ const Player = ({color, top, left, right, ballColor}) => {
   );
   const dispatch = useDispatch();
   const noLives = lives === 0 ? true : false;
-  const livesColor = kills ? 'red' : lives > 0 ? '#228c22' : '#aaa';
+  const livesColor = kills
+    ? 'red'
+    : lives === 3
+    ? '#228c22'
+    : lives < 3 && lives > 0
+    ? 'coral'
+    : '#999';
 
   // Styles
   const position = {top: top, left: left, right: right};
