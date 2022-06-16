@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Pressable, Text, View, DropDownPicker} from '../../../common';
 import {StyleSheet, TextInput} from 'react-native';
 import {shadowAround, shadowDark} from '../../../_Shadow';
@@ -30,6 +30,7 @@ const AddNoteForm = ({
     {label: 'Pink', value: 'Pink'},
     {label: 'Black', value: 'Black'},
   ]);
+  // What Potted \\
   const [whatPotted, setWhatPotted] = React.useState('');
   const [whatPottedItems, setWhatPottedItems] = useState([
     {label: 'What potted?', value: ''},
@@ -47,6 +48,27 @@ const AddNoteForm = ({
     {label: 'Bottom Right', value: 'BR'},
   ]);
   const [notes, setNotes] = React.useState('');
+
+  // Remove current team colors from list of 'potted by' options
+  useEffect(() => {
+    ballColor === 'yellow' || ballColor === 'brown' || ballColor === 'pink'
+      ? setPottedByItems(
+          pottedByItems.filter(
+            item =>
+              item.label !== 'Yellow' &&
+              item.label !== 'Brown' &&
+              item.label !== 'Pink',
+          ),
+        )
+      : setPottedByItems(
+          pottedByItems.filter(
+            item =>
+              item.label !== 'Green' &&
+              item.label !== 'Blue' &&
+              item.label !== 'Black',
+          ),
+        );
+  }, []);
 
   // FN: On confirm
   const _handleConfirm = async () => {
