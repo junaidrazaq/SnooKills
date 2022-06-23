@@ -4,7 +4,7 @@ import {Text} from '../../../common';
 const PlayerLives = ({noLives, lives}) => {
   const livesColor =
     lives === 3 || lives === 4 || lives === 5
-      ? 'green'
+      ? '#fff'
       : lives === 2 || lives === 1
       ? '#ff6a00'
       : '#cf2b479f';
