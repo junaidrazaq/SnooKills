@@ -9,6 +9,7 @@ import PlayerName from './PlayerName';
 import PlayerNotes from './PlayerNotes';
 import HeaderButtons from './HeaderButtons';
 import AddNoteForm from './AddNoteForm';
+import BallsPotted from './BallsPotted';
 
 // REDUX
 import {useDispatch, useSelector} from 'react-redux';
@@ -18,7 +19,6 @@ import {
   minusLife,
   selectBallByColor,
 } from '../../redux/homeSlice';
-import BallsPotted from './BallsPotted';
 
 const Player = ({color, top, left, right, ballColor}) => {
   // Local_State
