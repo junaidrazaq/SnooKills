@@ -1,12 +1,54 @@
 import {createSlice, createSelector} from '@reduxjs/toolkit';
 
 const initialState = {
-  yellow: {lives: 3, kills: false, name: null, notes: []},
-  green: {lives: 3, kills: false, name: null, notes: []},
-  brown: {lives: 3, kills: false, name: null, notes: []},
-  blue: {lives: 3, kills: false, name: null, notes: []},
-  pink: {lives: 3, kills: false, name: null, notes: []},
-  black: {lives: 3, kills: false, name: null, notes: []},
+  yellow: {
+    lives: 3,
+    kills: false,
+    name: null,
+    redsPotted: 0,
+    colorsPotted: 0,
+    notes: [],
+  },
+  green: {
+    lives: 3,
+    kills: false,
+    name: null,
+    redsPotted: 0,
+    colorsPotted: 0,
+    notes: [],
+  },
+  brown: {
+    lives: 3,
+    kills: false,
+    name: null,
+    redsPotted: 0,
+    colorsPotted: 0,
+    notes: [],
+  },
+  blue: {
+    lives: 3,
+    kills: false,
+    name: null,
+    redsPotted: 0,
+    colorsPotted: 0,
+    notes: [],
+  },
+  pink: {
+    lives: 3,
+    kills: false,
+    name: null,
+    redsPotted: 0,
+    colorsPotted: 0,
+    notes: [],
+  },
+  black: {
+    lives: 3,
+    kills: false,
+    name: null,
+    redsPotted: 0,
+    colorsPotted: 0,
+    notes: [],
+  },
 };
 
 export const homeSlice = createSlice({
@@ -39,6 +81,9 @@ export const homeSlice = createSlice({
     addNote: {
       reducer: (state, action) => {
         state[action.payload.player].notes.push(action.payload.note);
+        if (action.payload.pottedBy) {
+          state[action.payload.pottedBy].colorsPotted += 1;
+        }
       },
     },
 
@@ -64,6 +109,18 @@ export const homeSlice = createSlice({
       },
     },
 
+    // ** Add Balls Potted ** \\
+    addPotted: {
+      reducer: (state, action) => {
+        state[action.payload.player][action.payload.type] += 1;
+      },
+    },
+    removePotted: {
+      reducer: (state, action) => {
+        state[action.payload.player][action.payload.type] -= 1;
+      },
+    },
+
     // ** Reset Lives ** \\
     resetGame: {
       reducer: () => initialState,
@@ -81,6 +138,8 @@ export const {
   addNote,
   removeNote,
   resetGame,
+  addPotted,
+  removePotted,
 } = homeSlice.actions;
 
 // SELECTORS

@@ -19,17 +19,19 @@ const ResetLives = () => {
   // FN: Reset game
   const _resetGame = async () => {
     await dispatch(resetGame());
+    await setLoading(false);
   };
 
   // ALERT: Reset game
   const _onPress = () => {
+    setLoading(true);
     Alert.alert(
       'Reset Game',
       'Are you sure you want to reset all game?',
       [
         {
           text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
+          onPress: () => setLoading(false),
           style: 'cancel',
         },
         {text: 'OK', onPress: _resetGame},
@@ -44,7 +46,7 @@ const ResetLives = () => {
       loading={loading}
       title="Reset Game"
       onPress={() => _onPress()}
-      containerStyles={[styles.container, {bottom: insets.bottom + 20}]}
+      containerStyles={[styles.container, {bottom: insets.bottom + 10}]}
     />
   );
 };
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     alignSelf: 'center',
-    backgroundColor: 'red',
+    backgroundColor: '#333',
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 5,

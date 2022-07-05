@@ -33,7 +33,7 @@ const HeaderButtons = ({
     <>
       <Icon
         name={'circle'}
-        size={60}
+        size={50}
         color={color}
         style={{opacity: noLives ? 0.3 : 1}}
       />

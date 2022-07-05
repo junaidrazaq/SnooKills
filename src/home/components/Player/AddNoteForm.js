@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Pressable, Text, View, DropDownPicker} from '../../../common';
 import {StyleSheet, TextInput} from 'react-native';
 import {shadowAround, shadowDark} from '../../../_Shadow';
@@ -9,8 +9,6 @@ import IconButton from 'react-native-vector-icons/AntDesign';
 import {useDispatch} from 'react-redux';
 import {addNote, toggleKills} from '../../redux/homeSlice';
 
-// REDUX
-
 const AddNoteForm = ({
   name,
   ballColor,
@@ -18,11 +16,10 @@ const AddNoteForm = ({
   lives,
   gainedLife,
   onKillsNotes,
-  kills,
+  lostLife,
 }) => {
   // State
   const dispatch = useDispatch();
-
   const [whoPotted, setWhoPotted] = React.useState('');
   const [pottedByItems, setPottedByItems] = useState([
     {label: 'Potted by who?', value: ''},
@@ -33,6 +30,7 @@ const AddNoteForm = ({
     {label: 'Pink', value: 'Pink'},
     {label: 'Black', value: 'Black'},
   ]);
+  // What Potted \\
   const [whatPotted, setWhatPotted] = React.useState('');
   const [whatPottedItems, setWhatPottedItems] = useState([
     {label: 'What potted?', value: ''},
@@ -51,6 +49,27 @@ const AddNoteForm = ({
   ]);
   const [notes, setNotes] = React.useState('');
 
+  // Remove current team colors from list of 'potted by' options
+  useEffect(() => {
+    ballColor === 'yellow' || ballColor === 'brown' || ballColor === 'pink'
+      ? setPottedByItems(
+          pottedByItems.filter(
+            item =>
+              item.label !== 'Yellow' &&
+              item.label !== 'Brown' &&
+              item.label !== 'Pink',
+          ),
+        )
+      : setPottedByItems(
+          pottedByItems.filter(
+            item =>
+              item.label !== 'Green' &&
+              item.label !== 'Blue' &&
+              item.label !== 'Black',
+          ),
+        );
+  }, []);
+
   // FN: On confirm
   const _handleConfirm = async () => {
     if (onKillsNotes) {
@@ -67,6 +86,7 @@ const AddNoteForm = ({
           wherePotted,
           notes,
         ],
+        pottedBy: lostLife ? whoPotted.toLowerCase() : null,
       }),
     );
     await onClose();
@@ -94,7 +114,6 @@ const AddNoteForm = ({
           <View alignItems="center">
             <DropDownPicker // **|| Where potted ||** \\
               placeholder="Potted where?"
-              // containerStyle={{width: '45%', marginTop: 8}}
               value={wherePotted}
               setValue={setWherePotted}
               items={wherePottedItems}
@@ -185,6 +204,8 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     backgroundColor: 'rgba(0,0,0,0.1)',
     borderRadius: 5,
+    color: 'green',
+    fontWeight: '700',
   },
   icon: {
     flexDirection: 'row',

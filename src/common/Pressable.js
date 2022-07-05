@@ -13,9 +13,9 @@ const CustomPressable = ({
   button,
   loading,
   loadingColor,
+  textStyle,
   ...props
 }) => {
-  // console.log('pressableRendered');
   const buttonStyles = {
     paddingHorizontal: 25,
     paddingVertical: 10,
@@ -37,7 +37,10 @@ const CustomPressable = ({
       {loading ? (
         <ActivityIndicator color={loadingColor || '#fff'} />
       ) : title ? (
-        <Text fontFamily="Rubik-Medium" color={textColor ? textColor : '#fff'}>
+        <Text
+          style={(textStyle, {letterSpacing: 1})}
+          fontFamily="Rubik-Medium"
+          color={textColor ? textColor : '#fff'}>
           {title}
         </Text>
       ) : null}

@@ -5,11 +5,11 @@ import {shadowAround} from '../../../_Shadow';
 
 // COMPONENTS
 import AddRemoveBtns from './AddRemoveBtns';
-import PlayerLives from './PlayerLives';
 import PlayerName from './PlayerName';
 import PlayerNotes from './PlayerNotes';
 import HeaderButtons from './HeaderButtons';
 import AddNoteForm from './AddNoteForm';
+import BallsPotted from './BallsPotted';
 
 // REDUX
 import {useDispatch, useSelector} from 'react-redux';
@@ -28,19 +28,26 @@ const Player = ({color, top, left, right, ballColor}) => {
   const [onKillsNotes, setShowKillsNotes] = React.useState(false);
 
   // Redux_State
-  const ball = useSelector(state => selectBallByColor(state, ballColor));
-  const {lives, notes, kills, name} = ball;
+  const {lives, notes, kills, name} = useSelector(state =>
+    selectBallByColor(state, ballColor),
+  );
   const dispatch = useDispatch();
   const noLives = lives === 0 ? true : false;
+  const livesColor = kills
+    ? 'red'
+    : lives === 3
+    ? '#228c22'
+    : lives < 3 && lives > 0
+    ? 'coral'
+    : '#999';
 
   // Styles
   const position = {top: top, left: left, right: right};
-  const bgColor = {backgroundColor: noLives ? '#aaa' : '#f2f2f2'};
-  const killsShadow = {
-    shadowColor: 'red',
-    shadowRadius: 10,
-    shadowOpacity: 0.4,
-    elevation: 10,
+  const bgColor = {backgroundColor: noLives ? '#aaa' : '#333'};
+  const shadowColor = {
+    shadowColor: livesColor,
+    borderWidth: 0.5,
+    borderColor: livesColor,
   };
 
   // FN: Add one life
@@ -77,9 +84,7 @@ const Player = ({color, top, left, right, ballColor}) => {
   // RENDER || RENDER \\
   return (
     <>
-      <View
-        center
-        style={[styles.container, position, kills && killsShadow, bgColor]}>
+      <View center style={[styles.container, position, bgColor, shadowColor]}>
         <PlayerName name={name} ballColor={ballColor} />
 
         <HeaderButtons
@@ -91,9 +96,16 @@ const Player = ({color, top, left, right, ballColor}) => {
           onPress={() => setShowKillsNotes(true)}
         />
 
-        <PlayerLives noLives={noLives} lives={lives} />
+        <AddRemoveBtns
+          _onAdd={_onAdd}
+          _onMinus={_onMinus}
+          noLives={noLives}
+          lives={lives}
+        />
 
-        <AddRemoveBtns _onAdd={_onAdd} _onMinus={_onMinus} />
+        <BallsPotted ballType="Reds" ballColor={ballColor} />
+
+        <BallsPotted ballType="Colors" ballColor={ballColor} />
       </View>
 
       <PlayerNotes // Player Notes Modal
@@ -131,6 +143,7 @@ const Player = ({color, top, left, right, ballColor}) => {
           ballColor={ballColor}
           lives={lives}
           onClose={() => setLostLifeNote(false)}
+          lostLife
         />
       )}
     </>
@@ -146,6 +159,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     ...shadowAround,
     width: '42%',
+    shadowRadius: 19,
+    shadowOpacity: 0.9,
+    elevation: 12,
   },
 });
 
