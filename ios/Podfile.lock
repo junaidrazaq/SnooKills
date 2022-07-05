@@ -290,6 +290,35 @@ PODS:
     - RCTTypeSafety
     - React
     - ReactCommon/turbomodule/core
+  - react-native-skia (0.1.134):
+    - React
+    - React-callinvoker
+    - React-Core
+    - react-native-skia/Api (= 0.1.134)
+    - react-native-skia/Jsi (= 0.1.134)
+    - react-native-skia/RNSkia (= 0.1.134)
+    - react-native-skia/SkiaHeaders (= 0.1.134)
+    - react-native-skia/Utils (= 0.1.134)
+  - react-native-skia/Api (0.1.134):
+    - React
+    - React-callinvoker
+    - React-Core
+  - react-native-skia/Jsi (0.1.134):
+    - React
+    - React-callinvoker
+    - React-Core
+  - react-native-skia/RNSkia (0.1.134):
+    - React
+    - React-callinvoker
+    - React-Core
+  - react-native-skia/SkiaHeaders (0.1.134):
+    - React
+    - React-callinvoker
+    - React-Core
+  - react-native-skia/Utils (0.1.134):
+    - React
+    - React-callinvoker
+    - React-Core
   - React-perflogger (0.69.0)
   - React-RCTActionSheet (0.69.0):
     - React-Core/RCTActionSheetHeaders (= 0.69.0)
@@ -411,6 +440,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - "react-native-skia (from `../node_modules/@shopify/react-native-skia`)"
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -486,6 +516,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-skia:
+    :path: "../node_modules/@shopify/react-native-skia"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -551,6 +583,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 6aced68014b275b7abd073c9598b0affd0e1669c
   React-logger: bcf33ce10afa135158c72635e621ddb94126c610
   react-native-safe-area-context: 923e8a02d3bd88ca7a6b6c9b3db1b94591044b0c
+  react-native-skia: 0694c5eac15b6ff7b18de20cffe6c8e01a1f759e
   React-perflogger: aa48956d87bae67fc847acc196fae97928b96cd3
   React-RCTActionSheet: 4eaab2b885130ce9a88c8fdac5f1992315da80f6
   React-RCTAnimation: 5e91e3ceb988838fa43615bb602181be30d2b26e
